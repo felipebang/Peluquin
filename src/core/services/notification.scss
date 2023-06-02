@@ -1,0 +1,8 @@
+@import 'src/core/layout/LayoutColors';
+.notifi-error-content {
+	background-color: $danger !important;
+}
+.notif-error,
+.notif-success {
+	font-family: 'NeoSansStd-Regular' !important;
+}

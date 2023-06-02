@@ -1,0 +1,38 @@
+.login-container {
+	height: 100vh !important;
+	padding: 0 !important;
+	background-image: url('../../img/GettyImages-539654405.jpg');
+	background-size: cover;
+	background-position: top;
+}
+.login-form-container {
+	height: 100vh;
+	background: #ffffff47 !important;
+	border-radius: 0 !important;
+}
+.center-h-v {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.login-logo {
+	width: 70%;
+	height: auto;
+}
+.login-form-title {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	text-align: center;
+}
+.logo-indra-login {
+	display: block;
+	margin-left: inherit;
+	width: 40%;
+}
+.left-shadow {
+	box-shadow: -4px 0px 8px 2px #0554674f;
+}
+.login-footer {
+	text-align: center;
+	padding-top: 10%;
+}

@@ -1,0 +1,32 @@
+/* 
+Importante:: 
+los 56px que se restan corresponde al height del Navbar 
+*/
+.layout-back {
+	padding: 0.8%;
+	display: contents;
+	flex: 1 1 auto;
+	flex-direction: column;
+	overflow-x: auto;
+}
+
+.layout-back-container-0 {
+	height: calc(100% - 3.5rem);
+	background-color: #f8f9fa !important;
+	display: flex;
+	flex-direction: row;
+}
+.layout-back-container-1 {
+	padding: 0.5%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: overlay;
+	overflow-x: auto;
+	background-color: white;
+}
+.layout-back-container-2 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}

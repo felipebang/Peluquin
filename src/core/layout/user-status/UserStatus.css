@@ -1,0 +1,24 @@
+.user-status {
+	height: inherit !important;
+}
+.user-status .btn-group {
+	height: inherit !important;
+}
+.user-status .btn-group button {
+	border-radius: 0 !important;
+	cursor: pointer;
+}
+
+.header__user {
+	line-height: 48px;
+	width: 48px;
+	height: 48px;
+	margin-top: 4px;
+	margin-right: 23px;
+	background-color: #ffffff;
+	border-radius: 50%;
+	text-align: center;
+	display: block;
+	font-size: 1.625em;
+	cursor: pointer;
+}

@@ -1,0 +1,50 @@
+@font-face {
+	font-family: NeoSansStd-Bold;
+	src: url('../../fonts/NeoSansStd-Bold.otf');
+}
+@font-face {
+	font-family: NeoSansStd-Light;
+	src: url('../../fonts/NeoSansStd-Light.otf');
+}
+@font-face {
+	font-family: NeoSansStd-Medium;
+	src: url('../../fonts/NeoSansStd-Medium.otf');
+}
+@font-face {
+	font-family: NeoSansStd-Regular;
+	src: url('../../fonts/NeoSansStd-Regular.otf');
+}
+@font-face {
+	font-family: NoeDisplay-Regular;
+	src: url('../../fonts/NoeDisplay-Regular.otf');
+}
+
+$font-stack: 'NeoSansStd-Regular', 'NoeDisplay-Regular', 'NeoSansStd-Light',
+	'NeoSansStd-Medium', 'NeoSansStd-Bold';
+
+html,
+body {
+	font: 100% $font-stack;
+}
+
+$theme-colors: (
+	'primary': #004254,
+	'secondary': #03657c,
+	'warning': #fbbb21,
+	'light': #ffffff,
+	'gray': #e8e8e8
+);
+
+$color-gray-1: #e9ecef;
+
+// Buttons
+$btn-border-radius: 5px;
+
+.breadcrumb {
+	margin: 0 !important;
+	padding: 0 !important;
+	font-weight: bold !important;
+	align-items: center !important;
+}
+
+@import '~bootstrap/scss/bootstrap';

@@ -1,0 +1,149 @@
+html,
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	height: 100% !important;
+}
+
+#root,
+.full-content {
+	height: 100%;
+	font-family: 'NeoSansStd-Regular' !important;
+	color: #004254 !important;
+	/*background-color: azure;*/
+}
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+button {
+	cursor: pointer;
+}
+
+button:disabled {
+	cursor: not-allowed;
+	pointer-events: all !important;
+}
+
+td {
+	max-width: 135px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	font-family: 'NoeDisplay-Regular' !important;
+	color: #004254 !important;
+}
+
+div {
+	font-family: 'NeoSansStd-Regular' !important;
+	color: #004254 !important;
+}
+
+.btn-group .btn-primary {
+	font-family: 'NeoSansStd-Regular' !important;
+}
+
+.swal2-icon.swal2-info {
+	border-color: #03657c !important;
+	color: #03657c !important;
+}
+
+.swal2-styled.swal2-confirm {
+	background-color: #004254 !important;
+}
+
+.css-1pahdxg-control {
+	border-color: #03657c !important;
+	box-shadow: 0 0 0 0 !important;
+}
+.css-2613qy-menu {
+	background-color: #004254 !important;
+}
+
+.btn-outline-warning,
+.btn-warning {
+	color: #004254 !important;
+}
+
+.toolbar-button-nav {
+	font-size: 1em;
+	text-align: center;
+	margin: inherit;
+	padding: 8px 21px;
+	border: 3px solid #fbbb21 !important;
+	background-color: transparent;
+}
+
+.dropdown-item {
+	color: #004254 !important;
+}
+.dropdown-item:active {
+	background-color: #e8e8e8 !important;
+}
+
+button:focus {
+	outline: 1px transparent !important;
+}
+
+.number-filter-comparator {
+	display: none !important;
+}
+.number-filter {
+	display: inline;
+	font-family: 'NeoSansStd-Light' !important;
+}
+/* 
+Global App css
+*/
+DropdownItem {
+	cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 2px grey;
+	border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #03657c;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #034b60;
+	cursor: pointer;
+}
+
+.titleGeneral {
+	text-align: center;
+	text-transform: initial;
+}
+
+/*Valor para alertas de notificacion error en campos con validacion de edicion en tablas*/
+.alert-danger {
+	position: absolute !important;
+}

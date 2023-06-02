@@ -1,0 +1,35 @@
+.navbar-lef {
+	box-shadow: 5px 0 5px -5px hwb(219 13% 40%);
+	margin: 0 5px 0 0;
+	padding: 0 0.25em 0.25em 0.25em;
+	width: 68px;
+	text-align: center;
+	word-break: inherit;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.navbar-lef .btn-group {
+	width: 5.5em;
+	max-width: 5.5em;
+}
+.navbar-lef button {
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+.navbar-lef label {
+	font-size: 78%;
+}
+.icon-nav-left {
+	width: 110%;
+	text-align: center;
+	cursor: pointer;
+}
+
+#label-navbar-mod {
+	border-style: none none solid none;
+}
+
+.label-navbar {
+	width: 100%;
+}
