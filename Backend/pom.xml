@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.4</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>cmoff</groupId>
+	<artifactId>cmoff</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>cmoff</name>
+
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>1.8</java.version>
+		<application.name>cmoff</application.name>
+		<component.name>cmoff</component.name>
+		<mapstruct.version>1.3.0.Final</mapstruct.version>
+		<poi.version>4.1.2</poi.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<quartz.version>2.3.0</quartz.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- Dependencias de base de datos Oracle y PostgreSQL -->
+		<!-- Solo necesarias si se utilizan en el entorno local de desarrollo -->
+
+		<!-- Thanks for using https://jar-download.com -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.miachm.sods</groupId>
+			<artifactId>SODS</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<classifier>apt</classifier>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa-codegen</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>11.0.2</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version> <!-- NECESARIA ESTA VERSION PARA MAPSTRUCT -->
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.16.14</version>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.3.1.Final</version>
+						</path>
+
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<reuseForks>false</reuseForks>
+					<forkCount>1</forkCount>
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+</project>
