@@ -43,11 +43,19 @@ const RegistroPago = props => {
 
 	// Datatable
 	const columns = [
+		
+		{
+			dataField: 'id',
+			text: 'Código',
+			sort: true,
+			filter: textFilter({ placeholder: 'Código...' })
+		},
+
 		{
 			dataField: 'idPago',
-			text: 'identificación',
+			text: 'codigo',
 			sort: true,
-			filter: textFilter({ placeholder: 'identificación...' })
+			filter: textFilter({ placeholder: 'codigo...' })
 		},
 		{
 			dataField: 'valorPago',

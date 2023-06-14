@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -115,12 +117,13 @@ public class PersonaDAO implements IPersonaDAO{
 	@Override
 	public void delete(PersonaDTO entity) {
 		// TODO Auto-generated method stub
-		
+		repository.deleteAll();
 	}
 
 	@Override
 	public void deleteById(long entityId) {
 		// TODO Auto-generated method stub
+		repository.deleteById(entityId);
 		
 	}
 
@@ -155,6 +158,12 @@ public class PersonaDAO implements IPersonaDAO{
 			conn.setAutoCommit(false);
 		}
 		return conn;
+	}
+
+	@Override
+	public Object editar(@Valid PersonaDTO id) {
+		// TODO Auto-generated method stub
+		return ((IPersonaDAO) repository).editar(id);
 	}
 
 

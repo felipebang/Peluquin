@@ -15,7 +15,6 @@ import com.indra.cmoff.dto.RegistroCortesDTO;
 import com.indra.cmoff.mapper.RegistroCortesDTOMapper;
 
 import com.indra.cmoff.model.QRegistroCortes;
-import com.indra.cmoff.repository.PorcentajeRepository;
 import com.indra.cmoff.repository.RegistroCortesRepository;
 import com.indra.cmoff.repository.custom.IRegistroCortesDAO;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -85,16 +84,41 @@ public class RegistroCortesDAO implements IRegistroCortesDAO {
 		return null;
 	}
 
+	
+	@Override
+	public RegistroCortesDTO editar(RegistroCortesDTO p) {
+		// TODO Auto-generated method stub
+		
+		return  mapper.entityToDto(repository.saveAndFlush(mapper.dtoToEntity(p)));
+				//repository.save(p) ;
+	}
+
+
+	@Override
+	public void deleteById(long id) {
+		// TODO Auto-generated method stub
+		repository.deleteById(id);
+	}
+
 	@Override
 	public void delete(RegistroCortesDTO entity) {
 		// TODO Auto-generated method stub
 		repository.delete(mapper.dtoToEntity(entity));
+
+			//	mapper.entityToDto(repository.delete(mapper.dtoToEntity(entity)));
 	}
 
 	@Override
-	public void deleteById(long entityId) {
+	public RegistroCortesDTO findByCodEmpleado(Long codigo) {
 		// TODO Auto-generated method stub
-		repository.deleteById(entityId);
+		return (RegistroCortesDTO) repository.findAll();
 	}
+
+
+
+	
+
+
+	
 
 }

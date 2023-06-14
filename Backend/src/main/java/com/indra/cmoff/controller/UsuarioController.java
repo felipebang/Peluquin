@@ -1,5 +1,6 @@
 package com.indra.cmoff.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +26,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.indra.cmoff.dto.PaginatedFilter;
+import com.indra.cmoff.dto.PersonaDTO;
+import com.indra.cmoff.dto.RegistroCortesDTO;
 import com.indra.cmoff.dto.UsuarioDTO;
 import com.indra.cmoff.dto.UsuarioRolDTO;
+import com.indra.cmoff.service.IPersonaService;
 import com.indra.cmoff.service.IRolService;
 import com.indra.cmoff.service.IUsuarioService;
 import com.indra.cmoff.utils.util.Constantes;
@@ -45,10 +50,12 @@ public class UsuarioController {
 	PasswordEncoder encoder;
 	private final IUsuarioService usuarioService;
 	private final IRolService rolService;
+	private final IPersonaService PersonaService;
 	
-	public UsuarioController(IUsuarioService usuarioService, IRolService rolService) {
+	public UsuarioController(IUsuarioService usuarioService, IRolService rolService, IPersonaService PersonaService) {
 		this.usuarioService = usuarioService;
 		this.rolService = rolService;
+		this.PersonaService = PersonaService;
 	}
 	
 	@PreAuthorize("hasRole('"+ ConstantesRolesMP.ROLE_ADM +"') "
@@ -152,4 +159,71 @@ public class UsuarioController {
 	}
 
 
+	
+	
+	
+	// eliminar
+
+	/*
+	 * public colaborador delete(@PathVariable("id") int id) { return
+	 * registroCorteService.deleteRegistroCortes(id); }
+	 */
+
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
+			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+	@DeleteMapping(path = { "/delete/{id}" })
+	public Object delete(@PathVariable("id") long codigoEmpleado) {
+		try {
+
+			
+			// llamo y borro en REGISTROCORTES,
+			List<PersonaDTO> lista = new ArrayList<>();
+			lista = listarPersona();
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getCodigoEmpleado() == codigoEmpleado) {
+					PersonaService.deleteById(codigoEmpleado);
+
+				}
+
+			}
+
+		
+			
+			//
+
+			usuarioService.deleteById(codigoEmpleado);
+			statusResponse = HttpStatus.OK;
+			jsonResponse.put(Constantes.CODE, statusResponse);
+		} catch (Exception e) {
+			System.out.printf("   " + e.getMessage() + "" + e.toString());
+			// TODO: handle exception
+			statusResponse = HttpStatus.OK;
+			jsonResponse.put(Constantes.CODE, statusResponse);
+			return new ResponseEntity<>(jsonResponse, statusResponse);
+
+		}
+		jsonResponse.put(Constantes.MESSAGE, messageResponse);
+		jsonResponse.put(Constantes.CODE, statusResponse);
+		return new ResponseEntity<>(jsonResponse, statusResponse);
+	}
+
+
+	
+	
+	
+	private List<PersonaDTO> listarPersona() {
+		
+		// TODO Auto-generated method stub
+		return  PersonaService.findAll();
+	}
+
+	public  IPersonaService getPersonaService() {
+		// TODO Auto-generated method stub
+		return PersonaService;
+	}
+	
+	
+	
+	
 }

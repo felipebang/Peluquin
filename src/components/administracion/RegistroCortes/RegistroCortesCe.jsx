@@ -99,17 +99,7 @@ const RegistroCortesCe = props => {
 			actions: { onClick: () => props.history.goBack() },
 			icon: faArrowLeft
 		}
-		/*{
-			
-			
-			module: MODULOS.ADM_REGISTROCORTES .codigo,
-			permissions: [PERMISOS.escritura, PERMISOS.actualizacion],
-			label: 'Guardar',
-			form: inputsUserDisabled ? '' : 'usuarioForm',
-			icon: faSave,
-			
-			
-		}*/
+	
 	];
 
 	const handleSelectNombresChange = event => {
@@ -380,17 +370,12 @@ const RegistroCortesCe = props => {
 		});
 	};
 
-	
 
 	return (
 		<div className='flex-row'>
 			<div className='col-12'>
 				<ToolBar
-					breadcrumbs={
-						props.match.params.id
-							? REGISTROCORTES_EDIT_BREADCRUMBS
-							: REGISTROCORTES_NEW_BREADCRUMBS
-					}
+					breadcrumbs={REGISTROCORTES_NEW_BREADCRUMBS}
 					buttons={toolbarButtons}
 				/>
 				<AvForm
@@ -400,7 +385,7 @@ const RegistroCortesCe = props => {
 					<Button color='primary' onClick={handleValidUserSubmit}>
 						<FontAwesomeIcon icon={faSave} /> Guardar
 					</Button>
-
+					
 					<div className='row pt-1'>
 						<div className='border-bottom col-12 col-sm-12 col-md-12 col-lg-12'>
 							<fieldset className=' col '>
@@ -416,7 +401,17 @@ const RegistroCortesCe = props => {
 										htmlFor='example-text-input'
 										className='col-2 col-form-label'>
 										{FICHAPERSONAL_LABELS.NOMBRES}
+										{props.match.params.id ? (
+											''
+										) : (
+											<span
+												style={{ color: 'red' }}
+												title='Este campo es obligatorio.'>
+												*
+											</span>
+										)}
 									</label>
+
 									<FormGroup className='col-3'>
 										<CustomAsyncSelect
 											name='codigoEmpleado'
@@ -461,7 +456,7 @@ const RegistroCortesCe = props => {
 										<FormGroup>
 											<AvField
 												name='numeroCortes'
-												type='text'
+												type='number'
 												value={empleado.numeroCortes}
 												model={empleado.numeroCortes}
 												onChange={handleInputChange}
@@ -488,7 +483,7 @@ const RegistroCortesCe = props => {
 										<FormGroup>
 											<AvField
 												name='valorCorte'
-												type='text'
+												type='number'
 												value={empleado.valorCorte}
 												model={empleado.valorCorte}
 												onChange={handleInputChangecortes}

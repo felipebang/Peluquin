@@ -3,6 +3,8 @@ package com.indra.cmoff.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -62,12 +64,13 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Override
 	public void delete(PersonaDTO entity) {
 		// TODO Auto-generated method stub
-
+		personaDAO.delete(entity);
 	}
 
 	@Override
-	public void deleteById(long entityId) {
+	public void deleteById(long id) {
 		// TODO Auto-generated method stub
+	  personaDAO.deleteById(id);
 
 	}
 
@@ -80,6 +83,12 @@ public class PersonaServiceImpl implements IPersonaService {
 	public Page<PersonaDTO> filtroPagPorNombre(Integer page, Integer sizePerPage, PersonaDTO filter, String column,
 			String order) {
 		return personaDAO.filterByNombre(page, sizePerPage, filter, column, order);
+	}
+
+	@Override
+	public Object editar(@Valid PersonaDTO id) {
+		// TODO Auto-generated method stub
+		return personaDAO.editar(id);
 	}
 
 

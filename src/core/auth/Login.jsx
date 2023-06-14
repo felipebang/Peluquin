@@ -125,7 +125,16 @@ const Login = ({ actionSuccessLogin, props }) => {
 							<CardBody>
 								{FragmentLoginForm}
 								<div className='login-footer'>
-									<CardLink href='#'>Peluqueria</CardLink>
+									<footer>
+										<h6>
+											<em>
+												Felipe Banguero Arrechea 
+												#fbanguero4@misena.edu.co 
+												3185975406-soporte técnico
+											
+											</em>
+										</h6>
+									</footer>
 									<CardText>
 										<small className='text-muted'>
 											{'versión ' + process.env.REACT_APP_VERSION}

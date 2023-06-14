@@ -31,7 +31,7 @@ public class RegistroPagoServiceImpl implements IRegistroPagoService {
 	@Override
 	public List<RegistroPagoDTO> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return registroPagoDAO.findAll();
 	}
 
 	@Override
@@ -69,13 +69,13 @@ public class RegistroPagoServiceImpl implements IRegistroPagoService {
 	@Override
 	public void delete(RegistroPagoDTO entity) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void deleteById(long entityId) {
 		// TODO Auto-generated method stub
-		registroPagoDAO.deleteById(entityId);
+		registroPagoDAO.deleteById(entityId);;
 	}
 
 	@Override
@@ -90,5 +90,9 @@ public class RegistroPagoServiceImpl implements IRegistroPagoService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
 
 }

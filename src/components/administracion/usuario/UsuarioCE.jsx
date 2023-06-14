@@ -76,7 +76,8 @@ const UsuarioCE = props => {
 		update: '/usuarios/actualizar/',
 		obtenerUsuarioIdEmpl: '/usuarios/buscarPorCodEmpleado/',
 		obtenerrolesusuario: '/usuarios/obtenerrolesusuario/',
-		saveUsuarioRoles: '/usuarios/actualizarrolesusuario/'
+		saveUsuarioRoles: '/usuarios/actualizarrolesusuario/',
+		delete: '/usuarios/delete/'
 	};
 
 	const rolesApi = {
@@ -97,6 +98,17 @@ const UsuarioCE = props => {
 			icon: faSave,
 			actions: {
 				disabled: inputsUserDisabled
+			}
+		},
+
+		{
+			module: MODULOS.ADM_USUARIOS.codigo,
+			permissions: [PERMISOS.escritura, PERMISOS.actualizacion],
+			label: 'Borrar Registro',
+			form: inputsUserDisabled ? '' : 'usuarioForm',
+			icon:DataView,
+			actions: {
+				onClick: () => deleteBook(props.match.params.id)
 			}
 		}
 	];
@@ -453,6 +465,23 @@ const UsuarioCE = props => {
 	const handleSelectRolesUsuarioChange = event => {
 		setRolesUsuario(event);
 	};
+
+
+	//delete
+	const deleteBook = IdUsuario =>{
+		if(window.confirm("¿Realmente desea eliminar el registro?")) {
+		networkService
+			.delete(usuariosApi.delete + IdUsuario )
+			.then(response => {
+				notificationSuccess(response.data).then(r =>
+					props.history.push(ADM_USUARIOS)
+				
+				);
+			});
+
+
+		}
+	}
 
 	return (
 		<div className='flex-row'>

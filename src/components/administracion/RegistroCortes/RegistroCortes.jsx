@@ -52,6 +52,7 @@ const RegistroCortes = props => {
 
 	// Datatable
 	const columns = [
+
 		{
 			dataField: 'id',
 			text: 'Código',
@@ -59,23 +60,12 @@ const RegistroCortes = props => {
 			filter: textFilter({ placeholder: 'Código...' })
 		},
 
-
 		{
 			dataField: 'codigoEmpleado',
 			text: 'Documento identidad',
 			sort: true,
 			filter: textFilter({ placeholder: 'Documento identidad...' })
 		},
-
-
-		{
-			dataField: 'idPorcentaje',
-			text: 'Porcentaje',
-			sort: true,
-			filter: textFilter({ placeholder: 'Porcentaje...' })
-		},
-
-	
 
 
     {

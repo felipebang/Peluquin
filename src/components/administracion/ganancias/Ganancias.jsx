@@ -41,14 +41,23 @@ const Ganancias = props => {
 	const gananciasApi = {
 		buscar: '/ganancias/buscar'
 	};
+
+
+	
+	
+
+
 	// Datatable
 	const columns = [
+	
+
 		{
-			dataField: 'idGanancias',
-			text: 'identificación',
+			dataField: 'id',
+			text: 'Código',
 			sort: true,
-			filter: textFilter({ placeholder: 'identificación...' })
+			filter: textFilter({ placeholder: 'Código...' })
 		},
+	
 		{
 			dataField: 'gananciaValor',
 			text: 'gananciaValor',
@@ -62,6 +71,8 @@ const Ganancias = props => {
 			filter: textFilter({ placeholder: 'fecha de creación...' })
 		}
 	];
+
+	
 const rowEvents = {
 
 		onClick: (e, row) => {

@@ -12,4 +12,6 @@ public interface IGananciaService  extends ICrudService<GananciasDTO>{
 	GananciasDTO findByCodEmpleado(Long codigo);
 
 
+
+
 }

@@ -8,4 +8,6 @@ import com.indra.cmoff.model.RegistroCortes;
 
 public interface RegistroCortesRepository extends JpaRepository<RegistroCortes, Long> ,QuerydslPredicateExecutor<RegistroCortes> {
 
+	
+
 }

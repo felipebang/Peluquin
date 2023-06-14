@@ -2,94 +2,78 @@ import {
 	faArrowLeft,
 	faIdCardAlt,
 	faSave,
-	faSearch,
-	faUserCircle
+	faEdit
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from 'reactstrap';
-import CustomSelect from '../../../shared/selects/CustomSelect';
-import CustomAsyncSelect from '../../../shared/selects/CustomAsyncSelect';
+import { generatePath } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import {
-	REGISTROCORTES_NEW_BREADCRUMBS,
-	VALIDATIONS_LABELS,
 	REGISTROCORTES_EDIT_BREADCRUMBS,
-	ESTADO_INACTIVO,
-	ESTADO_ACTIVO,
-	MESSAGE_ERROR,
-	MESSAGE_INFO
+	MESSAGE_ERROR
 } from '../../../shared/constants/client';
 import { AvField, AvForm } from 'availity-reactstrap-validation';
 import networkService from '../../../core/services/networkService';
-import Swal from 'sweetalert2';
 import {
 	notificationError,
-	notificationSuccess,
-	notificationInfo
+	notificationSuccess
 } from '../../../core/services/notificationService';
-import { FICHAPERSONAL_LABELS } from '../../cmoff/ficha_empleados/FichaEmpleadosUtils';
-import { USUARIO_LABELS } from '../usuario/usuarioUtils';
 import { REGISTROCORTES_LABELS } from '../RegistroCortes/RegistroCortesUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getLoggedUser, userLogOut } from '../../../core/auth/auth.service';
-import { ADM_REGISTROCORTES } from '../../../shared/constants/routesApp';
-import { PERMISOS } from '../../../shared/constants/permisos';
+import { REGISTROCORTES } from '../../../shared/constants/registroCortes';
 import { MODULOS } from '../../../shared/constants/modulos';
 import { Button } from 'reactstrap';
-
+import {
+	ADM_REGISTROCORTES,
+	ADM_REGISTROCORTES_DETAIL
+} from '../../../shared/constants/routesApp';
+import { getLoggedUser, userLogOut } from '../../../core/auth/auth.service';
+import axios from 'axios';
 const RegistroCortesDetail = props => {
+	
 	const [idParam, setIdParam] = useState(null);
 	const [inputsUserDisabled, setInputsUserDisabled] = useState(false);
 	const [rolesError, setRolesError] = useState(false);
-	const usuarioInitialState = {
-		usuario: '',
-		clave: '',
-		verificacionClave: ''
-	};
-	const [usuario, setUsuario] = useState(usuarioInitialState);
-	const empleadoInitialState = {
-		codigoEmpleado: ''
-	};
+	const userLogged = getLoggedUser();
+	const [estadoError, setEstadoError] = useState(false);
 
-	const registroCortesInitialState = {
+	
+
+
+
+
+	const empleadoInitialState = {
+	
 		numeroCortes: '',
 		valorCorte: '',
-		codigoEmpleado: ''
+		codigoEmpleado: '',
+		registroCortesDTOList: {}
+		
+			
 	};
-	const [empleado, setEmpleado] = useState(empleadoInitialState);
-	const [empleados, setEmpleados] = useState({});
-	const [roles, setRoles] = useState([]);
-	const [registroCortes, setgistroCortes] = useState(registroCortesInitialState);
+
+
+	
+	const [persona, setPersona] = useState({
+		idRegistroCorte: '',
+		numeroCortes: '',
+		valorCorte: '',
+		codigoEmpleado: '',
+		registroCortesDTOList: {}
+	
+	});
+
 	const [rolesUsuario, setRolesUsuario] = useState([]);
-	const [codEmpleadoBuscar, setCodEmpleadoBuscar] = useState('');
-	const userLogged = getLoggedUser();
-	const [modalDownload, setModalDownload] = useState(false);
-	const [persona, setPersona] = useState({});
+	const [personaService , setCodEmpleadoBuscar] = useState('');
+	const [checked, setChecked] = useState([]);
+
 	//api
 	const empleadosApi = {
-		persona: '/persona/',
-		buscarEmpleado: '/persona/buscarporcodigo/',
-		filterSelect: '/persona/filternombres'
-	
-	};
-
-	const usuariosApi = {
-		edit: '/usuarios/',
-	
-	};
-
-	const rolesApi = {
-		obtenerroles: '/roles/listar'
-	};
-
-	const registroCortesApi = {
-		edit: '/registrocortes/',
-		buscarEmpleado: '/registrocortes/buscarporcodigo/',
-		filterSelect: '/registrocortes/filternombres',
+		registrocortes: '/registrocortes/',
 		update: '/registrocortes/actualizar/',
-		create: '/registrocortes/crear'
-	
+		delete: '/registrocortes/delete/'
+		
 	};
 
 	const toolbarButtons = [
@@ -97,30 +81,41 @@ const RegistroCortesDetail = props => {
 			label: 'Volver',
 			actions: { onClick: () => props.history.goBack() },
 			icon: faArrowLeft
-		}
-		/*{
-			
-			
-			module: MODULOS.ADM_REGISTROCORTES .codigo,
-			permissions: [PERMISOS.escritura, PERMISOS.actualizacion],
-			label: 'Guardar',
+		},
+
+		{
+			module: MODULOS.ADM_REGISTROCORTES.codigo,
+			permissions: [REGISTROCORTES.escritura, REGISTROCORTES.actualizacion],
+			label: 'Actualizar',
 			form: inputsUserDisabled ? '' : 'usuarioForm',
-			icon: faSave,
-			
-			
-		}*/
+			icon: faEdit,
+			actions: {
+				onClick: () => saveActualizar(props.match.params.id)
+			}
+		},
+
+		{
+			module: MODULOS.ADM_REGISTROCORTES.codigo,
+			permissions: [REGISTROCORTES.escritura, REGISTROCORTES.actualizacion],
+			label: 'Borrar Registro',
+			form: inputsUserDisabled ? '' : 'usuarioForm',
+			icon:DataView,
+			actions: {
+				onClick: () => deleteBook(props.match.params.id)
+			}
+		}
 	];
 
-
 	useEffect(() => {
+
 		networkService
-			.get(empleadosApi.persona + props.match.params.id)
+			.get(empleadosApi.registrocortes + props.match.params.id)
 			.then(response => {
 				setPersona(response.data);
 			});
 		const paginate = {
 			filter: {
-				persona: { codigoEmpleado: props.match.params.id }
+				registrocortes: { codigoEmpleado: props.match.params.id }
 			},
 			page: 0,
 			sizePerPage: 10,
@@ -130,24 +125,57 @@ const RegistroCortesDetail = props => {
 			column: 'id',
 			order: 'asc'
 		};
-
 	}, []);
 
-	
-	
-
-
-
-	const toggleDownload = () => {
-		setModalDownload(!modalDownload);
-	
-	};
-
-
-//console.log(registroCortesApi)
+	//console.log(registroCortesApi)
 
 	//return false;
 
+	const saveActualizar = IdRegistroCorte => {
+		const cortesRequest = { ...persona };
+		networkService
+			.put(empleadosApi.update + IdRegistroCorte, cortesRequest)
+			.then(response => {
+				notificationSuccess(response.data).then(r =>
+					props.history.push(ADM_REGISTROCORTES)
+				);
+			});
+	};
+
+
+
+	const handleInputChange = event => {
+		console.log(event.target.value);
+
+		setPersona({
+			...persona,
+			[event.target.name]: event.target.value
+		});
+		//empleado.valorCorte=event.target.value;
+	};
+	const handleInputChangecortes = event => {
+		console.log(event.target.value);
+		setPersona({
+			...persona,
+			[event.target.name]: event.target.value
+		});
+	};
+
+//delete
+	const deleteBook = IdRegistroCorte =>{
+		if(window.confirm("¿Realmente desea eliminar el registro?")) {
+		networkService
+			.delete(empleadosApi.delete + IdRegistroCorte )
+			.then(response => {
+				notificationSuccess(response.data).then(r =>
+					props.history.push(ADM_REGISTROCORTES)
+				
+				);
+			});
+
+
+		}
+	}
 
 
 
@@ -158,95 +186,167 @@ const RegistroCortesDetail = props => {
 
 
 
+		/*
+		{
+		
+		const cortesRequest = { ...persona };
+		networkService
+			 
+
+		.delete("/registrocortes/delete/:id",(req,res)=>{
+			const id = props.match.params.id;
+
+			empleadosApi.query('DELETE FROM empleado WHERE id=?', id,
+			(err,result)=>{
+				if(err){
+					console.log(err);
+				}else{
+					res.send("Emplaedo eliminado con exito!!");
+				} if(console.log("error")); {
+					alert("error");
+
+				}
+			}
+	
+	
+	
+	
+		
+			)
+
+		}
+		
+
+		
+		
+		)
+	
+
+		
+
+		};
+
+		
+	};
+
+*/
 
 
 
 
 
+				
+		//	console.log(delete(pidRegistroCorte));
 
-
-
-
+	//	return false;
+					
+	
 
 
 	
+
+
 
 
 	return (
 		<div className='flex-row'>
-			<div className='col-12'>
-				<ToolBar
-					breadcrumbs={
-						props.match.params.id
-							? REGISTROCORTES_EDIT_BREADCRUMBS
-							: REGISTROCORTES_NEW_BREADCRUMBS
-					}
-					buttons={toolbarButtons}
-				/>
-				<AvForm
-					id='usuarioForm'
-					model={empleado}
-					/*{onValidSubmit={handleValidUserSubmit}*/>
-					<Button color='primary'  /*onClick={handleValidUserSubmit}*/>
-						<FontAwesomeIcon icon={faSave} /> Guardar
-					</Button>
+			<ToolBar
+				breadcrumbs={REGISTROCORTES_EDIT_BREADCRUMBS}
+				buttons={toolbarButtons}
+			/>
 
+			<AvForm>
+				<div className='col-12'>
 					<div className='row pt-1'>
 						<div className='border-bottom col-12 col-sm-12 col-md-12 col-lg-12'>
 							<fieldset className=' col '>
-								<legend className='h5 pt-2'>
-									<FontAwesomeIcon icon={faSearch} className='text-secondary' />
-									{' ' + USUARIO_LABELS.groupBusquedaEmpleado}
-								</legend>
 								<br />
 
 								<div className='form-group row'>
 									<div className='col-1'></div>
 									<label
 										htmlFor='example-text-input'
-										className='col-2 col-form-label'>
-										
-									</label>
-								
+										className='col-2 col-form-label'></label>
+
 									<FormGroup className='row'>
-									<label
-										htmlFor='example-text-input'
-										className='col-5 col-form-label'>
+										<label
+											htmlFor='example-text-input'
+											className='col-5 col-form-label'>
 											{' ' + REGISTROCORTES_LABELS.NUCODEMPLEADO}
-									</label>
-									<div className='col-7'>
-										<input
-											readOnly={true}
-											className='form-control'
-											type='text'
-											name='codigoEmpleado'
-											value={persona.codigoEmpleado}
-										/>
-									</div>
-								</FormGroup>
+										</label>
+										<div className='col-7'>
+											<input
+												readOnly={true}
+												className='form-control'
+												type='text'
+												name='codigoEmpleado'
+												value={persona.codigoEmpleado}
+											/>
+										</div>
+									</FormGroup>
 								</div>
 							</fieldset>
 						</div>
 					</div>
+				</div>
 
-					<div className='row pt-1'>
-						<div className='border-right col-12 col-sm-12 col-md-12 col-lg-4'>
-							<fieldset className=' col '>
-								<legend className='h5 pt-2'>
-									<FontAwesomeIcon
-										icon={faIdCardAlt}
-										className='text-secondary'
-									/>
-									{' ' + REGISTROCORTES_LABELS.REGISTRO}
-								</legend>
-								<br />
-
+				<div className='row pt-1'>
+					<div className='border-right col-12 col-sm-12 col-md-12 col-lg-4'>
+						<fieldset className=' col '>
+							<legend className='h5 pt-2'>
+								<FontAwesomeIcon
+									icon={faIdCardAlt}
+									className='text-secondary'
+								/>
+								{REGISTROCORTES_LABELS.REGISTRO}
+							</legend>
+							<br />
+							<FormGroup className='row'>
+								<label
+									htmlFor='example-text-input'
+									className='col-5 col-form-label'>
+									{REGISTROCORTES_LABELS.NUMEROCORTES}
 								
-							</fieldset>
-						</div>
+								</label>
+								<div className='col-7'>
+									<AvField
+										name='numeroCortes'
+										type='number'
+										value={persona.numeroCortes}
+										onChange={handleInputChange}
+										autoComplete='numeroCortes'
+									/>
+								</div>
+							</FormGroup>
+							<FormGroup className='row'>
+								<label
+									htmlFor='example-text-input'
+									className='col-5 col-form-label'>
+									{' ' + REGISTROCORTES_LABELS.VALORCORTE}
+								
+								</label>
+								<div className='col-7'>
+									<AvField
+										name='valorCorte'
+										type='number'
+										value={persona.valorCorte || ''}
+										onChange={handleInputChangecortes}
+										autoComplete='valorCorte'
+										validate={{
+											minLength: {
+												value: 4
+											},
+											maxLength: {
+												value: 16
+											}
+										}}
+									/>
+								</div>
+							</FormGroup>
+						</fieldset>
 					</div>
-				</AvForm>
-			</div>
+				</div>
+			</AvForm>
 		</div>
 	);
 };

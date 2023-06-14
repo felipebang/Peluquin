@@ -38,38 +38,23 @@ public class PersonaDTO extends BaseDTO {
 	@Size(max = 240, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
 	@Email(message = Constantes.EMAIL_INVALIDO)
 	private String email;
-	
+
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 450, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
 	private String empresa;
-	
+
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 45, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
 	private String pais;
-	
+
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 45, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
 	private String provincia;
-	
-	
+
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 450, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
 	private String funcionPrincipal;
-	
-	
-	
-	
 
-	
-
-	
-	
-	
-	
-
-	
-
-	
 //	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 //	private String dominioTecnologico;
 //	
@@ -83,6 +68,11 @@ public class PersonaDTO extends BaseDTO {
 			nombreCompleto.append(" ").append(apellido2);
 		}
 		return nombreCompleto.toString();
+	}
+
+	public void setId(long id) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

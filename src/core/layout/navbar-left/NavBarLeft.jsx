@@ -18,7 +18,7 @@ const NavBarLeft = history => {
 				<label
 					id='label-navbar-mod'
 					className='pt-4 text-light text-center label-navbar font-weight-bold'>
-					Módulos
+					NAVEGAR EN LOS MODULOS
 				</label>
 				{modulos.map((modulo, index) => {
 					return (

@@ -124,5 +124,5 @@ public final class Constantes implements Serializable {
 	public static final String ERROR_PROYECTO_NUEVO_YA_EXISTENTE = "Ya existe un proyecto con el código ingresado.";
 	public static final String ERROR_DOMINIO_CREADO = "El dominio no se guardo correctamente.";
 	public static final String ERROR_PRACTICA_CREADO = "Ya existen conocimientos para la práctica, subpráctica y especialización en sistema.";
-
+	public static final String ERROR_SOLICITUD_CORTE = "El corte que desea borrar tiene registros asociados a ganancia";
 }

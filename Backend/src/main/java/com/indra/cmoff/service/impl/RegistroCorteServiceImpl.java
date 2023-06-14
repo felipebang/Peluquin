@@ -3,12 +3,13 @@ package com.indra.cmoff.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 
 import com.indra.cmoff.dto.RegistroCortesDTO;
-import com.indra.cmoff.model.RegistroCortes;
 import com.indra.cmoff.repository.custom.IRegistroCortesDAO;
 import com.indra.cmoff.service.IRegistroCorteService;
 
@@ -38,7 +39,7 @@ private final IRegistroCortesDAO  registroCortesDAO;
 	@Override
 	public List<RegistroCortesDTO> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return registroCortesDAO.findAll();
 	}
 
 	@Override
@@ -73,17 +74,7 @@ private final IRegistroCortesDAO  registroCortesDAO;
 		return registroCortesDAO.saveList(entities);
 	}
 
-	@Override
-	public void delete(RegistroCortesDTO entity) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void deleteById(long entityId) {
-		// TODO Auto-generated method stub
-		registroCortesDAO.deleteById(entityId);
-	}
 
 	@Override
 	public Page<RegistroCortesDTO> filtroPagPorNombre(Integer page, Integer sizePerPage, RegistroCortesDTO filter,
@@ -95,14 +86,33 @@ private final IRegistroCortesDAO  registroCortesDAO;
 	@Override
 	public RegistroCortesDTO findByCodEmpleado(Long codigo) {
 		// TODO Auto-generated method stub
-		return null;
+		return registroCortesDAO.findByCodEmpleado(codigo);
+	}
+
+
+
+	@Override
+	public RegistroCortesDTO editar(RegistroCortesDTO p) {
+		// TODO Auto-generated method stub
+		return registroCortesDAO.save(p);
+	}
+
+
+
+	@Override
+	public void delete(RegistroCortesDTO entity) {
+		// TODO Auto-generated method stub
+		registroCortesDAO.delete(entity);
 	}
 
 	@Override
-	public RegistroCortes deleteregistroCorte(int id) {
+	public void deleteById(long entityId) {
 		// TODO Auto-generated method stub
-		return null;
+		registroCortesDAO.deleteById(entityId);
 	}
+
 	
+	
+
 
 }

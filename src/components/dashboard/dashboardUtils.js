@@ -78,14 +78,14 @@ export const MODULES = [
 		src: ICON_ITINERARIOFORMATIVO,
 		srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO,
 		modules: [
-		/*	{
+			{
 				codigo: MODULOS.ITI_FORMATIVOS_IMPORTACION.codigo,
 				label: MODULOS.ITI_FORMATIVOS_IMPORTACION.nombreCorto,
 				text: MODULOS.ITI_FORMATIVOS_IMPORTACION.nombreLargo,
 				link: ITI_FORMATIVOS_IMPORTACION,
 				src: ICON_IMPORTACION,
 				srcNavLeft: ICON_IMPORTACION_BLANCO
-			},*/
+			},
 	
 			{
 				codigo: MODULOS.CMOFF_REGISTROCORTES.codigo,
@@ -144,30 +144,20 @@ export const MODULES = [
 
 
 
-/*
-			{
-				codigo: MODULOS.ADM_PERSONAS.codigo,
-				label: MODULOS.ADMIN_PERSONAS.nombreCorto,
-				text: MODULOS.ADMIN_PERSONAS.nombreLargo,
-				link: ITI_FICHA_EMPLEADOS,
-				src: ICON_FICHAPERSONAS,
-				srcNavLeft: ICON_ADM_USUARIOS
-			},
-
-		*/
+		{
+			codigo: MODULOS.ADM_ROLES.codigo,
+			label: MODULOS.ADMIN_PERSONAS.nombreCorto,
+			text: MODULOS.ADMIN_PERSONAS.nombreLargo,
+			link: ITI_FICHA_EMPLEADOS,
+			src: ICON_FICHAPERSONAS,
+			srcNavLeft: ICON_ADM_USUARIOS
+		},
+		
 
 
 
 
-			{
-				codigo: MODULOS.ADM_PERSONAS.codigo,
-				label: MODULOS.ADM_PERSONAS.nombreCorto,
-				text: MODULOS.ADM_PERSONAS.nombreLargo,
-				link: ITI_FICHA_EMPLEADOS,
-				src: ICON_FICHAPERSONAS,
-				srcNavLeft: ICON_ADM_USUARIOS
-			},
-
+	
 
 		
 			{
@@ -176,7 +166,7 @@ export const MODULES = [
 				text: MODULOS.ADM_GANANCIAS.nombreLargo,
 				link: ADM_GANANCIAS,
 				src: ganancias,
-				srcNavLeft: ICON_ADM_USUARIOS
+				srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO
 			},
 
 
@@ -187,12 +177,12 @@ export const MODULES = [
 				text: MODULOS.ADM_REGISTROCORTES.nombreLargo,
 				link: ADM_REGISTROCORTES,
 				src: RegistroCortes,
-				srcNavLeft: ICON_ADM_USUARIOS
+				srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO
 			},
 
 
 			
-			/*{
+			{
 				codigo: MODULOS.ADM_HISTORIAGANANCIAS.codigo,
 				label: MODULOS.ADM_HISTORIAGANANCIAS.nombreCorto,
 				text: MODULOS.ADM_HISTORIAGANANCIAS.nombreLargo,
@@ -201,7 +191,6 @@ export const MODULES = [
 				srcNavLeft: ICON_ADM_USUARIOS
 			}, 
 		
-*/
 
 
 
@@ -211,7 +200,7 @@ export const MODULES = [
 				text: MODULOS.ADM_PORCENTAJE.nombreLargo,
 				link: ADM_PORCENTAJE,
 				src: porcentaje,
-				srcNavLeft: ICON_ADM_USUARIOS
+				srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO
 			}, 
 		
 
@@ -225,7 +214,7 @@ export const MODULES = [
 				text: MODULOS.ADM_REGISTROPAGO.nombreLargo,
 				link: ADM_REGISTROPAGO,
 				src: RegistroPago,
-				srcNavLeft: ICON_ADM_USUARIOS
+				srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO
 			}
 
 	

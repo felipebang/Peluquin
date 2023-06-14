@@ -80,4 +80,5 @@ public interface ICrudService <T extends BaseDTO> {
 	 * @param entityId the entity id
 	 */
 	void deleteById(final long entityId);
+	
 }

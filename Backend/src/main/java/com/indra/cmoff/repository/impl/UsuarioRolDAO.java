@@ -80,7 +80,7 @@ public class UsuarioRolDAO implements IUsuarioRolDAO {
 
 	@Override
 	public void deleteById(long entityId) {
-		//repository.deleteById(entityId);
+	         repository.deleteAll();
 	}
 
 	@Override

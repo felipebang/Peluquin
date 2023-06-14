@@ -5,6 +5,9 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import com.indra.cmoff.model.Ganancias;
 
+
 public interface GananciasRepository  extends JpaRepository <Ganancias, Long>, QuerydslPredicateExecutor<Ganancias> {
 
+
+	
 }

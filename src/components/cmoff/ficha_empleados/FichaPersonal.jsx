@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { FICHA_EMPLEADOS_PERSONAL_BREADCRUMBS } from '../../../shared/constants/client';
+import { FICHA_EMPLEADOS_PERSONAL_BREADCRUMBS,  } from '../../../shared/constants/client';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import {
 	faArrowLeft,
@@ -20,8 +20,15 @@ import Datatable from '../../../shared/datatable/Datatable';
 import { Button } from 'reactstrap';
 import networkService from '../../../core/services/networkService';
 import moment from 'moment';
-
+import {
+	notificationError,
+	notificationSuccess
+} from '../../../core/services/notificationService';
 import '../styles.css';
+import {
+	ITI_FICHA_EMPLEADOS
+} from '../../../shared/constants/routesApp';
+
 const FichaPersonal = props => {
 	const [informacionState, setInformacionState] = useState(true);
 
@@ -38,14 +45,28 @@ const FichaPersonal = props => {
 			label: 'Volver',
 			actions: { onClick: () => props.history.goBack() },
 			icon: faArrowLeft
+		},
+
+
+
+
+		
+		{
+			
+			
+			label: 'Borrar colaborador',
+			form: modalDownload? '' : 'usuarioForm',
+			icon:DataView,
+			actions: {
+				onClick: () => deleteBook(props.match.params.id)
+			}
 		}
-		
-		
 		
 	];
 
 	const fichaPersonalApi = {
 		persona: '/persona/',
+		delete: '/persona/delete/'
 	
 	};
 
@@ -78,6 +99,21 @@ const FichaPersonal = props => {
 	
 	};
 
+
+	const deleteBook = codigoEmpleado =>{
+		if(window.confirm("¿Realmente desea eliminar el registro?")) {
+		networkService
+			.delete(fichaPersonalApi.delete + codigoEmpleado )
+			.then(response => {
+				notificationSuccess(response.data).then(r =>
+					props.history.push(ITI_FICHA_EMPLEADOS)
+				
+				);
+			});
+
+
+		}
+	}
 
 	return (
 		<div className='flex-row'>

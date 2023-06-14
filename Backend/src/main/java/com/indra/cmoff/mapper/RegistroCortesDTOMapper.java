@@ -11,7 +11,10 @@ import com.indra.cmoff.model.RegistroCortes;
 public interface RegistroCortesDTOMapper   extends IModelDTOMapper<RegistroCortes, RegistroCortesDTO> {
 	
 	
-	RegistroCortesDTO entityToDto(RegistroCortes entity);
-	RegistroCortes dtoToEntity(RegistroCortesDTO dto);
+	RegistroCortesDTO entityToDto(Object object);
+	RegistroCortes dtoToEntity(RegistroCortes id);
+	
+
+
 
 }

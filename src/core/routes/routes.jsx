@@ -244,7 +244,7 @@ class Routes extends Component {
 						exact={true}
 						path={ADM_REGISTROCORTES_EDIT}
 						layout={LayoutBack}
-						component={RegistroCortesCE}
+						component={RegistroCortesDetail}
 						privateRoute={true}
 					/>
 

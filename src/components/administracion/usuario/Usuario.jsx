@@ -208,7 +208,7 @@ const Usuario = props => {
 				onClick: () => props.history.push(ADM_USUARIOS_NEW)
 			},
 			icon: faUserPlus
-		} /* ,
+		} ,/* ,
 		{
 			label: 'Acciones masivas',
 			children: [

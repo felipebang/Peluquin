@@ -48,6 +48,8 @@ const FICHA_PERSONAL_LABEL = 'Ficha personal';
 
 const PRACTICAS_LABEL = 'Prácticas';
 const IMPORTACION_LABEL = 'Importación';
+const CMOFFRegistrocortes_LABEL = 'Registro de  Cortes';
+const CMOFFGANANCIAS_LABEL = 'Ganancias';
 const PARAMETRO_LABEL = 'Parametro';
 const GANANCIAS_LABEL = 'Ganancias';
 const REGISTROCORTES_LABEL = 'Registro de  Cortes';
@@ -126,7 +128,7 @@ export const ESTADO_INACTIVO = 'INACTIVO';
  * @type {{home: string, home2: string}}
  */
 export const RAIZ = {
-	home: '/cmoff',
+	home: '/',
 	home2: '/dashboard'
 };
 
@@ -315,8 +317,18 @@ export const FICHA_EMPLEADOS_PERSONAL_BREADCRUMBS = [
  * BREADCRUMBS PARA ITINERARIOS IMPORTACION
  */
 export const IMPORTACION_BREADCRUMBS = [
-	{ label: DASHBOARD_LABEL, path: RAIZ.home },
+	{ label: DASHBOARD_LABEL, path: RAIZ.home2 },
 	{ label: IMPORTACION_LABEL }
+];
+
+export const CMOFFRegistrocortes = [
+	{ label: DASHBOARD_LABEL, path: RAIZ.home2 },
+	{ label: CMOFFRegistrocortes_LABEL }
+];
+
+export const CMOFFGanancias = [
+	{ label: DASHBOARD_LABEL, path: RAIZ.home2 },
+	{ label: CMOFFGANANCIAS_LABEL }
 ];
 
 /**

@@ -1,6 +1,6 @@
 export const MODULOS = {
 	ITI_FORMATIVOS: {
-		codigo: 'DASHBOARD',
+		codigo: 'CMOFF',
 		nombreLargo: 'Colaborador',
 		nombreCorto: 'Colaborador'
 	},
@@ -22,14 +22,14 @@ export const MODULOS = {
 
 	
 	CMOFF_REGISTROPAGO: {
-		codigo: 'CMOFF',
+		codigo: 'RFTP',
 		nombreLargo: 'Pago',
 		nombreCorto: 'Pago'
 	},
 
 
 	CMOFF_REGISTROCORTES:{
-		codigo: 'CMOFF',
+		codigo: 'RCT',
 		nombreLargo: 'Registro de cortes',
 		nombreCorto: 'Registro de cortes'
 	},
@@ -63,43 +63,37 @@ export const MODULOS = {
 		nombreCorto: 'Personas'
 	},
 
-
-	ADM_PERSONAS: {
-		codigo: 'ADMPAR',
-		nombreLargo: 'Administración de colaboradores',
-		nombreCorto: 'Personas'
-	},
 	ADM_GANANCIAS: {
-		codigo: 'ADMN',
+		codigo: 'ADM',
 		nombreLargo: 'Ganancias',
 		nombreCorto: 'Ganancias'
 	},
 
 	ADM_REGISTROCORTES: {
-		codigo: 'ADMN',
+		codigo: 'ADM',
 		nombreLargo: 'Registro de cortes',
 		nombreCorto: 'Registro de cortes'
 	},
 
 
 	ADM_HISTORIAGANANCIAS: {
-		codigo: 'ADMN',
+		codigo: 'ADM',
 		nombreLargo: 'Historial de Ganancias',
 		nombreCorto: 'Historial de Ganancias'
 	},
 
 	ADM_PORCENTAJE: {
-		codigo: 'ADMN',
-		nombreLargo: 'Administración de porcentaje',
+		codigo: 'ADM',
+		nombreLargo: 'Porcentaje',
 		nombreCorto: 'Porcentaje'
 	},
 
 
 
 	ADM_REGISTROPAGO: {
-		codigo: 'ADMN',
-		nombreLargo: 'Pago',
-		nombreCorto: 'Pago'
+		codigo: 'ADM',
+		nombreLargo: 'Valor de pago de colaborador',
+		nombreCorto: 'Valor de pago de colaborador'
 	}
 
 };

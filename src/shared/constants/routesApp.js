@@ -106,7 +106,7 @@ export const ADM_GANANCIAS= ADMINISTRACION + '/ganancias';
 
 export const ADM_REGISTROCORTES= ADMINISTRACION + '/registrocortes';
 export const ADM_REGISTROCORTES_NEW = ADM_REGISTROCORTES + '/crear';
-export const ADM_REGISTROCORTES_DETAIL = ADM_REGISTROCORTES + '/:id';
+export const ADM_REGISTROCORTES_DETAIL = ADM_REGISTROCORTES + '/:id/editar';
 export const ADM_REGISTROCORTES_EDIT = ADM_REGISTROCORTES + '/:id/editar';
 
 

@@ -46,12 +46,7 @@ const HistoriaGanancias = props => {
 	// Datatable
 	const columns = [
 		
-		{
-			dataField: 'idHistoriaGanancias',
-			text: 'identificación',
-			sort: true,
-			filter: textFilter({ placeholder: 'identificación...' })
-		},
+
 	
 		{
 			dataField: 'gananciaValor',

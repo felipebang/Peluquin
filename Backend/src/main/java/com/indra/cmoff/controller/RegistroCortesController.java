@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.dao.DataIntegrityViolationException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,6 @@ import com.indra.cmoff.dto.PaginatedFilter;
 import com.indra.cmoff.dto.PorcentajeDTO;
 import com.indra.cmoff.dto.RegistroCortesDTO;
 import com.indra.cmoff.dto.RegistroPagoDTO;
-import com.indra.cmoff.model.RegistroCortes;
 import com.indra.cmoff.service.IGananciaService;
 import com.indra.cmoff.service.IPorcentajeService;
 import com.indra.cmoff.service.IRegistroCorteService;
@@ -40,10 +39,9 @@ import com.indra.cmoff.utils.util.ConstantesRolesMP;
 /**
  * * Controlador encargado de permitir gestionar creacion persona
  * 
- * @author 
- * FELIPE BANGUERO ARRECHEA<br>
+ * @author <br>
  *         <br>
- *         Email:FBANGUERO4@MISENA.EDU.CO <br>
+ *         Email: <br>
  * 
  * @version 1.0
  * 
@@ -102,49 +100,6 @@ public class RegistroCortesController {
 
 	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
 			+ ConstantesRolesMP.PRM_L + "')")
-
-	
-
-	@PutMapping("/actualizar/{id}")
-	public Object update(@Valid @RequestBody RegistroCortesDTO newUser, @PathVariable Long id) {
-		try {
-			
-			registroCorteService.save(newUser);
-			statusResponse = HttpStatus.CREATED;
-			messageResponse = Constantes.USUARIO_ACTUALIZADO;
-		} catch (DataIntegrityViolationException exception) {
-			statusResponse = HttpStatus.BAD_REQUEST;
-			messageResponse = exception.getMostSpecificCause().getMessage();
-			messageResponse = Constantes.ERROR_USUARIO_EXISTENTE;
-		} catch (Exception e) {
-			statusResponse = HttpStatus.BAD_REQUEST;
-			messageResponse = Constantes.ERROR_SOLICITUD;
-		}
-		jsonResponse.put(Constantes.MESSAGE, messageResponse);
-		jsonResponse.put(Constantes.CODE, statusResponse);
-
-		return new ResponseEntity<>(jsonResponse, statusResponse);
-	}
-	
-	// borrar un registro
-		@DeleteMapping(path = { "delete/{id}" })
-		public RegistroCortes delete(@PathVariable("id") int id) {
-			return registroCorteService.deleteregistroCorte(id);
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@PostMapping("/buscar")
 	public Page<RegistroCortesDTO> buscar(@RequestBody PaginatedFilter<RegistroCortesDTO> filtro) {
 		return registroCorteService.filterPaginated(filtro.getPage(), filtro.getSizePerPage(), filtro.getFilter(),
@@ -165,11 +120,8 @@ public class RegistroCortesController {
 			// aplicamos porcentaje al colaborador
 			List<PorcentajeDTO> lista = new ArrayList<>();
 			lista = listarPorcentaje();
-
 			// operacion de el aplicativo
 			
-
-		
 			int getValorCortes = Integer.parseInt(newRegistroCortes.getValorCorte());
 			int getPorcentajeEmpl = Integer.parseInt(lista.get(0).getPorcentajeEmpl());
 		//operacion
@@ -233,16 +185,90 @@ public class RegistroCortesController {
 	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
 			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+	 //actualizar update partica set subprati='nbnb' wh
+	@PutMapping(path = { "/actualizar/{id}" })
+	public Object replaceReg(@Valid @RequestBody RegistroCortesDTO registrDto, @PathVariable Long id) {
+		registrDto.setId((long) id);
+		return registroCorteService.editar(registrDto);
+	}
+	
+	// eliminar
+
+	/*
+	 * public RegistroCortes delete(@PathVariable("id") int id) { return
+	 * registroCorteService.deleteRegistroCortes(id); }
+	 */
+
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
+			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+	@DeleteMapping(path = { "/delete/{id}" })
+	public Object delete(@PathVariable("id") long id) {
+		try {
+
+			// llamo y borro en ganancias, registro_pago
+			List<GananciasDTO> lista = new ArrayList<>();
+			lista = listarGanancias();
+			// System.out.printf( " tamaño "+lista.size());
+			for (int i = 0; i < lista.size(); i++) {
+				if (lista.get(i).getId() == id) {
+					gananciaService.deleteById(lista.get(i).getIdGanancias());
+				}
+			}
+			//
+
+			List<RegistroPagoDTO> result = new ArrayList<>();
+			result = listarRegistroPago();
+			for (int i = 0; i < result.size(); i++) {
+				if (result.get(i).getId() == id) {
+					registroPagoService.deleteById(result.get(i).getIdPago());
+
+				}
+
+			}
+
+			registroCorteService.deleteById(id);
+			statusResponse = HttpStatus.OK;
+			jsonResponse.put(Constantes.CODE, statusResponse);
+		} catch (Exception e) {
+			System.out.printf("   " + e.getMessage() + "" + e.toString());
+			// TODO: handle exception
+			statusResponse = HttpStatus.OK;
+			jsonResponse.put(Constantes.CODE, statusResponse);
+			return new ResponseEntity<>(jsonResponse, statusResponse);
+
+		}
+		jsonResponse.put(Constantes.MESSAGE, messageResponse);
+		jsonResponse.put(Constantes.CODE, statusResponse);
+		return new ResponseEntity<>(jsonResponse, statusResponse);
+	}
+
+		
+		
+		
 	@GetMapping("/listarValorPorcentaje")
 	public List<PorcentajeDTO> listarPorcentaje() {
 		return porcentajeService.findAll();
 	}
 
-	public IGananciaService getGananciaService() {
-		return gananciaService;
-	}
 
 	public IRegistroPagoService getRegistroPagoService() {
 		return registroPagoService;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

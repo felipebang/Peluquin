@@ -32,7 +32,7 @@ public Optional<GananciasDTO> findById(long id) {
 @Override
 public List<GananciasDTO> findAll() {
 	// TODO Auto-generated method stub
-	return null;
+	return gananciasDAO.findAll();
 }
 
 @Override
@@ -91,6 +91,8 @@ public GananciasDTO findByCodEmpleado(Long codigo) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+
 
 
 }
