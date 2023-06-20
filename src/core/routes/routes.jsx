@@ -12,13 +12,13 @@ import {
 	ADM_USUARIOS_NEW,
 	DASHBOARD,
 	CMOFF,
-	
 	CMOFF_FICHA_EMPLEADOS,
 	CMOFF_FICHA_EMPLEADOS_PERSONAL,
 	ITI_FORMATIVOS_IMPORTACION,
 	LOGIN,
 	RAIZ,
 	CMOFF_REGISTROCORTES,
+	CMOFF_REGISTROCORTESCE_NEW,
 	CMOFF_REGISTROPAGO,
 	ADM_EMPLEADOS_NEW,
 	ADM_GANANCIAS,
@@ -59,6 +59,7 @@ import Porcentaje from '../../components/administracion/porcentaje/Porcentaje';
 import registroPago from '../../components/administracion/RegistroPago/RegistroPago';
 
 import CMOFFRegistroCortes from '../../components/cmoff/RegistroCortes/CMOFFRegistroCortes';
+import CMOFFRegistroCortesCE from '../../components/cmoff/RegistroCortes/RegistroCortesCe';
 
 import CMOFFRegistroPago from '../../components/cmoff/RegistroPago/CMOFFRegistroPago';
 
@@ -79,7 +80,7 @@ class Routes extends Component {
 						component={Login}
 						privateRoute={false}
 					/>
-				
+
 					<RouteCustom
 						exact={true}
 						path={DASHBOARD}
@@ -136,8 +137,13 @@ class Routes extends Component {
 						component={CMOFFRegistroCortes}
 						privateRoute={true}
 					/>
-
-			
+					<RouteCustom
+						exact={true}
+						path={CMOFF_REGISTROCORTESCE_NEW}
+						layout={LayoutBack}
+						component={CMOFFRegistroCortesCE}
+						privateRoute={true}
+					/>
 
 					<RouteCustom
 						exact={true}
@@ -145,9 +151,8 @@ class Routes extends Component {
 						layout={LayoutBack}
 						component={CMOFFRegistroPago}
 						privateRoute={true}
-						
 					/>
-			
+
 					{/**
 					 *  modulos de administracion
 					 */}

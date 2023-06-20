@@ -29,15 +29,24 @@ import {
 	notificationInfo
 } from '../../../core/services/notificationService';
 import { FICHAPERSONAL_LABELS } from '../../cmoff/ficha_empleados/FichaEmpleadosUtils';
-import { USUARIO_LABELS } from '../usuario/usuarioUtils';
+import { USUARIO_LABELS } from '../../administracion/usuario/usuarioUtils';
 import { REGISTROCORTES_LABELS } from '../RegistroCortes/RegistroCortesUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getLoggedUser, userLogOut } from '../../../core/auth/auth.service';
-import { ADM_REGISTROCORTES } from '../../../shared/constants/routesApp';
 import { PERMISOS } from '../../../shared/constants/permisos';
 import { MODULOS } from '../../../shared/constants/modulos';
 import { Button } from 'reactstrap';
+import {
+	ADM_REGISTROCORTES_NEW,
+	CMOFF_REGISTROCORTES,
+	CMOFF_REGISTROCORTESCE_NEW,
+	ADM_REGISTROCORTES_DETAIL,
+	ADMINISTRACION,
+	CMOFF
+	//ADM_ROLES_NEW,
+	//ADM_ROLES_DETAIL,
 
+} from '../../../shared/constants/routesApp';
 const RegistroCortesCe = props => {
 	const [idParam, setIdParam] = useState(null);
 	const [inputsUserDisabled, setInputsUserDisabled] = useState(false);
@@ -81,10 +90,10 @@ const RegistroCortesCe = props => {
 		saveUsuarioRoles: '/usuarios/actualizarrolesusuario/'
 	};
 
-	const rolesApi = {
+	/*const rolesApi = {
 		obtenerroles: '/roles/listar'
 	};
-
+*/
 	const registroCortesApi = {
 		edit: '/registrocortes/',
 		buscarEmpleado: '/registrocortes/buscarporcodigo/',
@@ -169,7 +178,7 @@ const RegistroCortesCe = props => {
 				.post(registroCortesApi.create, usuarioRequest)
 				.then(response => {
 					notificationSuccess(response.data).then(r =>
-						props.history.push(ADM_REGISTROCORTES)
+						props.history.push(CMOFF_REGISTROCORTES)
 					);
 				});
 		} else {
@@ -282,7 +291,7 @@ const RegistroCortesCe = props => {
 				.then(response => {
 					const usuarioResponse = response.data;
 					setUsuario(response.data);
-					if (usuarioResponse) {
+				/*	if (usuarioResponse) {
 						networkService
 							.get(empleadosApi.edit + usuarioResponse.persona)
 							.then(response => {
@@ -296,10 +305,10 @@ const RegistroCortesCe = props => {
 									props.history.goBack();
 								});
 							});
-					}
+					}*/
 				});
 		} else {
-			obtenerRoles();
+			//obtenerRoles();
 		}
 	}, []);
 
@@ -345,7 +354,7 @@ const RegistroCortesCe = props => {
 		});
 	};
 
-	const obtenerRoles = () => {
+	/*const obtenerRoles = () => {
 		networkService.get(rolesApi.obtenerroles).then(response => {
 			const parsedData = formatSelect(
 				'roles',
@@ -380,7 +389,7 @@ const RegistroCortesCe = props => {
 		});
 	};
 
-	
+	*/
 
 	return (
 		<div className='flex-row'>

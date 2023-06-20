@@ -95,6 +95,8 @@ const RegistroCortesCe = props => {
 
 	const toolbarButtons = [
 		{
+			module: MODULOS.ADM_REGISTROCORTES.codigo,
+			permissions: [PERMISOS.lectura,PERMISOS.escritura, PERMISOS.actualizacion],
 			label: 'Volver',
 			actions: { onClick: () => props.history.goBack() },
 			icon: faArrowLeft

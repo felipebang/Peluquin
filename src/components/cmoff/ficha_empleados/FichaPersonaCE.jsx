@@ -56,8 +56,8 @@ const FichaPersonaCE = props => {
 		nombreCompuesto: '',
 		email: '',
 		estado: '',
-		empresa:'',
-		funcionPrincipal:''
+		empresa: '',
+		funcionPrincipal: ''
 	};
 	const [empleado, setEmpleado] = useState(empleadoInitialState);
 	const [empleados, setEmpleados] = useState({});
@@ -93,9 +93,6 @@ const FichaPersonaCE = props => {
 			icon: faArrowLeft
 		}
 	];
-
-
-
 
 	const formatSelect = (type, data, value, label) => {
 		let dataFormat = [];
@@ -192,21 +189,24 @@ const FichaPersonaCE = props => {
 		}
 	}, []);
 
-
-	const handleInputChange = (event) => {
+	const handleInputChange = event => {
 		// console.log(event.target.name)
 		// console.log(event.target.value)
 		setEmpleado({
 			...empleado,
-			[event.target.name] : event.target.value
-		})
-	}
-	
+			[event.target.name]: event.target.value
+		});
+	};
 
-
-	const handleValidUserSubmit = (event) => {
+	const handleValidUserSubmit = event => {
 		event.preventDefault();
-		if(empleado.nombres !="" && empleado.empresa !="" && empleado.apellido1 !="" && empleado.codigoEmpleado !=""&& empleado.email !=""  ){
+		if (
+			empleado.nombres != '' &&
+			empleado.empresa != '' &&
+			empleado.apellido1 != '' &&
+			empleado.codigoEmpleado != '' &&
+			empleado.email != ''
+		) {
 			const usuarioRequest = { ...empleado };
 			networkService
 				.post(empleadosApi.create, usuarioRequest)
@@ -215,25 +215,14 @@ const FichaPersonaCE = props => {
 						props.history.push(ITI_FICHA_EMPLEADOS)
 					);
 				});
-	
-
-		}else{
-            console.log(empleado.empresa)
+		} else {
+			console.log(empleado.empresa);
 
 			const params = {};
 			params.message = MESSAGE_ERROR.ERROR_CAMPOS;
-			notificationError(
-			 params
-			);
-			
+			notificationError(params);
 		}
-
-
-			
 	};
-
-
-
 
 	const obtenerRoles = () => {
 		networkService.get(rolesApi.obtenerroles).then(response => {
@@ -270,29 +259,20 @@ const FichaPersonaCE = props => {
 		});
 	};
 
-
-
 	return (
 		<div className='flex-row'>
 			<div className='col-12'>
-			<ToolBar
+				<ToolBar
 					breadcrumbs={FICHA_EMPLEADOS_BREADCRUMBS}
 					buttons={toolbarButtons}
 				/>
 
-			
 				<AvForm
 					id='usuarioForm'
-				    model={empleado}
-					onValidSubmit={handleValidUserSubmit}
-					
-
-					>
-					<Button
-				      color='primary'
-					  onClick={handleValidUserSubmit}	>
-					<FontAwesomeIcon icon={faSave} />{' '}
-					Guardar
+					model={empleado}
+					onValidSubmit={handleValidUserSubmit}>
+					<Button color='primary' onClick={handleValidUserSubmit}>
+						<FontAwesomeIcon icon={faSave} /> Guardar
 					</Button>
 					<div className='row pt-1'>
 						<div className='border-right col-12 col-sm-12 col-md-12 col-lg-4'>
@@ -322,18 +302,16 @@ const FichaPersonaCE = props => {
 										)}
 									</label>
 									<div className='col-7'>
-									<FormGroup >
+										<FormGroup>
 											<AvField
 												name='nombres'
 												type='text'
 												value={empleado.nombres}
 												model={empleado.nombres}
-											    onChange={handleInputChange}
-										
-												
+												onChange={handleInputChange}
 											/>
 										</FormGroup>
-										</div>
+									</div>
 								</FormGroup>
 								<FormGroup className='row'>
 									<label
@@ -351,18 +329,16 @@ const FichaPersonaCE = props => {
 										)}
 									</label>
 									<div className='col-7'>
-									<FormGroup >
+										<FormGroup>
 											<AvField
 												name='apellido1'
 												type='text'
 												value={empleado.apellido1}
 												model={empleado.apellido1}
-											    onChange={handleInputChange}
-										
-												
+												onChange={handleInputChange}
 											/>
 										</FormGroup>
-										</div>
+									</div>
 								</FormGroup>
 								<FormGroup className='row'>
 									<label
@@ -371,15 +347,13 @@ const FichaPersonaCE = props => {
 										{FICHAPERSONAL_LABELS.PAIS}
 									</label>
 									<div className='col-7'>
-									<FormGroup >
+										<FormGroup>
 											<AvField
 												name='pais'
 												type='text'
 												value={empleado.pais}
 												model={empleado.pais}
-											    onChange={handleInputChange}
-										
-												
+												onChange={handleInputChange}
 											/>
 										</FormGroup>
 									</div>
@@ -391,15 +365,13 @@ const FichaPersonaCE = props => {
 										{FICHAPERSONAL_LABELS.PROVINCIA}
 									</label>
 									<div className='col-7'>
-									<AvField
-												name='provincia'
-												type='text'
-												value={empleado.provincia}
-												model={empleado.provincia}
-											    onChange={handleInputChange}
-										
-												
-											/>
+										<AvField
+											name='provincia'
+											type='text'
+											value={empleado.provincia}
+											model={empleado.provincia}
+											onChange={handleInputChange}
+										/>
 									</div>
 								</FormGroup>
 							</fieldset>
@@ -411,7 +383,6 @@ const FichaPersonaCE = props => {
 										icon={faUserCircle}
 										className='text-secondary'
 									/>
-								
 								</legend>
 								<br />
 								<FormGroup className='row'>
@@ -430,8 +401,7 @@ const FichaPersonaCE = props => {
 										)}
 									</label>
 									<div className='col-7'>
-
-									<FormGroup >
+										<FormGroup>
 											<AvField
 												name='codigoEmpleado'
 												type='number'
@@ -440,53 +410,47 @@ const FichaPersonaCE = props => {
 													pattern: { value: '^[0-9]+$' },
 													minLength: { value: 1 },
 													maxLength: { value: 15 }
-												
-													
 												}}
 												value={empleado.codigoEmpleado}
 												model={empleado.codigoEmpleado}
-											    onChange={handleInputChange}
-										
-												
+												onChange={handleInputChange}
 											/>
 										</FormGroup>
-									
 									</div>
 								</FormGroup>
 								<FormGroup className='row'>
 									<label
 										htmlFor='example-text-input'
 										className='col-5 col-form-label'>
-									{FICHAPERSONAL_LABELS.COMPANIA}
+										{FICHAPERSONAL_LABELS.COMPANIA}
 									</label>
 									<div className='col-7'>
-		                                    <AvField
-												name='empresa'
-												type='text'
-												value={empleado.empresa}
-												model={empleado.empresa}
-												onChange={handleInputChange}
-											/>
-
+										<AvField
+											name='empresa'
+											type='text'
+											value={empleado.empresa}
+											model={empleado.empresa}
+											onChange={handleInputChange}
+										/>
 									</div>
 								</FormGroup>
 								<FormGroup className='row'>
-											<label
-												htmlFor='example-text-input'
-												className='col-5 col-form-label'>
-												{FICHAPERSONAL_LABELS.FUNCION_PRINCIPAL}
-											</label>
-											<div className='col-7'>
-											<AvField
-											    	name='funcionPrincipal'
-												     model={empleado.funcionPrincipal}
-													className='form-control'
-													type='text'
-													value={empleado.funcionPrincipal}
-													onChange={handleInputChange}
-												/>
-											</div>
-										</FormGroup>
+									<label
+										htmlFor='example-text-input'
+										className='col-5 col-form-label'>
+										{FICHAPERSONAL_LABELS.FUNCION_PRINCIPAL}
+									</label>
+									<div className='col-7'>
+										<AvField
+											name='funcionPrincipal'
+											model={empleado.funcionPrincipal}
+											className='form-control'
+											type='text'
+											value={empleado.funcionPrincipal}
+											onChange={handleInputChange}
+										/>
+									</div>
+								</FormGroup>
 								<FormGroup className='row'>
 									<label
 										htmlFor='example-text-input'
@@ -494,17 +458,19 @@ const FichaPersonaCE = props => {
 										{FICHAPERSONAL_LABELS.EMAIL}
 									</label>
 									<div className='col-7'>
-									<AvField
-												name='email'
-												type='text'
-												value={empleado.email}
-												onChange={handleInputChange}
-											/>
+										<AvField
+											name='email'
+											type='text'
+											value={empleado.email}
+											onChange={handleInputChange}
+											validate={{
+											pattern: {value: '/^w+([.-_+]?w+)*@w+([.-]?w+)*(.w{2,10})+$/ '}
+											}}
+										/>
 									</div>
 								</FormGroup>
 							</fieldset>
 						</div>
-						
 					</div>
 				</AvForm>
 			</div>

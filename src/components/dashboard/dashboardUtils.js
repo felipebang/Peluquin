@@ -2,6 +2,8 @@ import {
 	DASHBOARD,
 	CMOFF,
 	ITI_FORMATIVOS_IMPORTACION,
+	CMOFF_REGISTROPAGO,
+	CMOFF_REGISTROCORTES,
 	ADMINISTRACION,
 	ADM_PERSONAS,
 	ADM_USUARIOS,
@@ -11,10 +13,9 @@ import {
 	ADM_REGISTROCORTES,
 	ADM_HISTORIAGANANCIAS,
 	ADM_PORCENTAJE,
-	ADM_REGISTROPAGO,
+	ADM_REGISTROPAGO
 
-	CMOFF_REGISTROPAGO,
-	CMOFF_REGISTROCORTES,
+	
 	
 
 	
@@ -78,14 +79,14 @@ export const MODULES = [
 		src: ICON_ITINERARIOFORMATIVO,
 		srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO,
 		modules: [
-			{
-				codigo: MODULOS.ITI_FORMATIVOS_IMPORTACION.codigo,
-				label: MODULOS.ITI_FORMATIVOS_IMPORTACION.nombreCorto,
-				text: MODULOS.ITI_FORMATIVOS_IMPORTACION.nombreLargo,
-				link: ITI_FORMATIVOS_IMPORTACION,
-				src: ICON_IMPORTACION,
-				srcNavLeft: ICON_IMPORTACION_BLANCO
-			},
+			// {
+			// 	codigo: MODULOS.ITI_FORMATIVOS_IMPORTACION.codigo,
+			// 	label: MODULOS.ITI_FORMATIVOS_IMPORTACION.nombreCorto,
+			// 	text: MODULOS.ITI_FORMATIVOS_IMPORTACION.nombreLargo,
+			// 	link: ITI_FORMATIVOS_IMPORTACION,
+			// 	src: ICON_IMPORTACION,
+			// 	srcNavLeft: ICON_IMPORTACION_BLANCO
+			// },
 	
 			{
 				codigo: MODULOS.CMOFF_REGISTROCORTES.codigo,
@@ -94,16 +95,16 @@ export const MODULES = [
 				link: CMOFF_REGISTROCORTES,
 				src: RegistroCortes,
 				srcNavLeft: ICON_ITINERARIOFORMATIVO_BLANCO
-			},
-
-				{
-				codigo: MODULOS.CMOFF_REGISTROPAGO.codigo,
-				label: MODULOS.CMOFF_REGISTROPAGO.nombreCorto,
-				text: MODULOS.CMOFF_REGISTROPAGO.nombreLargo,
-				link: CMOFF_REGISTROPAGO,
-				src: RegistroPago,
-				srcNavLeft:  ICON_ITINERARIOFORMATIVO_BLANCO
 			}
+
+			// 	{
+			// 	codigo: MODULOS.CMOFF_REGISTROPAGO.codigo,
+			// 	label: MODULOS.CMOFF_REGISTROPAGO.nombreCorto,
+			// 	text: MODULOS.CMOFF_REGISTROPAGO.nombreLargo,
+			// 	link: CMOFF_REGISTROPAGO,
+			// 	src: RegistroPago,
+			// 	srcNavLeft:  ICON_ITINERARIOFORMATIVO_BLANCO
+			// }
 
 		]
 	},
@@ -182,7 +183,7 @@ export const MODULES = [
 
 
 			
-			{
+			/*{
 				codigo: MODULOS.ADM_HISTORIAGANANCIAS.codigo,
 				label: MODULOS.ADM_HISTORIAGANANCIAS.nombreCorto,
 				text: MODULOS.ADM_HISTORIAGANANCIAS.nombreLargo,
@@ -190,7 +191,7 @@ export const MODULES = [
 				src: HistoriaGanancias,
 				srcNavLeft: ICON_ADM_USUARIOS
 			}, 
-		
+		*/
 
 
 

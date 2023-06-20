@@ -15,7 +15,6 @@ import { CMOFF, ADM_ROLES_NEW } from '../../../shared/constants/routesApp';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
 import { MODULOS } from '../../../shared/constants/modulos';
-import { GANANCIAS } from '../../../shared/constants/ganancias';
 import { PERMISOS } from '../../../shared/constants/permisos';
 const CMOFFRegistroPago = props => {
 	//State
@@ -96,6 +95,8 @@ const rowEvents = {
 	//Botones para el toolbar
 	const toolbarButtons = [
 		{
+			module: MODULOS.CMOFF_REGISTROPAGO.codigo,
+			permissions: [PERMISOS.escritura],
 			label: 'Volver',
 			actions: { onClick: () => props.history.push(CMOFF) },
 			icon: faArrowLeft

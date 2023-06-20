@@ -99,18 +99,23 @@ const UsuarioCE = props => {
 			actions: {
 				disabled: inputsUserDisabled
 			}
-		},
-
-		{
-			module: MODULOS.ADM_USUARIOS.codigo,
-			permissions: [PERMISOS.escritura, PERMISOS.actualizacion],
-			label: 'Borrar Registro',
-			form: inputsUserDisabled ? '' : 'usuarioForm',
-			icon:DataView,
-			actions: {
-				onClick: () => deleteBook(props.match.params.id)
-			}
 		}
+
+
+
+		// {
+		// 	module: MODULOS.ADM_REGISTROCORTES.codigo,
+		// 	permissions: [PERMISOS .escritura, PERMISOS.actualizacion],
+		// 	label: 'Borrar Registro',
+		// 	form: inputsUserDisabled ? '' : 'usuarioForm',
+		// 	icon:DataView,
+		// 	actions: {
+		// 		onClick: () => deleteBook(props.match.params.id)
+		// 	}
+		// }
+		
+
+
 	];
 
 	const handleCodEmpleadoBuscarChange = event => {
@@ -467,21 +472,29 @@ const UsuarioCE = props => {
 	};
 
 
-	//delete
-	const deleteBook = IdUsuario =>{
-		if(window.confirm("¿Realmente desea eliminar el registro?")) {
-		networkService
-			.delete(usuariosApi.delete + IdUsuario )
-			.then(response => {
-				notificationSuccess(response.data).then(r =>
-					props.history.push(ADM_USUARIOS)
-				
-				);
-			});
 
 
-		}
-	}
+
+		//delete
+		// const deleteBook = IdRegistroCorte =>{
+		// 	if(window.confirm("¿Realmente desea eliminar el registro?")) {
+		// 	networkService
+		// 		.delete(usuariosApi.delete + IdRegistroCorte )
+		// 		.then(response => {
+		// 			notificationSuccess(response.data).then(r =>
+		// 				props.history.push(ADM_USUARIOS)
+					
+		// 			);
+		// 		});
+	
+	
+		// 	}
+		// }
+
+
+
+
+
 
 	return (
 		<div className='flex-row'>

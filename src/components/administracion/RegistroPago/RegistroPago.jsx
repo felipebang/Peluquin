@@ -2,19 +2,17 @@ import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { textFilter } from 'react-bootstrap-table2-filter';
 import { withRouter } from 'react-router-dom';
-import {
-   REGISTROPAGO_BREADCRUMBS
-} from '../../../shared/constants/client';
+import { REGISTROPAGO_BREADCRUMBS } from '../../../shared/constants/client';
 import Datatable, {
 	getStoredFilter
 } from '../../../shared/datatable/Datatable';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import networkService from '../../../core/services/networkService';
-import {
-	ADMINISTRACION
-} from '../../../shared/constants/routesApp';
+import { ADMINISTRACION } from '../../../shared/constants/routesApp';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
+import { MODULOS } from '../../../shared/constants/modulos';
+import { PERMISOS } from '../../../shared/constants/permisos';
 
 const RegistroPago = props => {
 	//State
@@ -39,11 +37,8 @@ const RegistroPago = props => {
 		buscar: '/registropago/buscar'
 	};
 
-
-
 	// Datatable
 	const columns = [
-		
 		{
 			dataField: 'id',
 			text: 'Código',
@@ -51,12 +46,6 @@ const RegistroPago = props => {
 			filter: textFilter({ placeholder: 'Código...' })
 		},
 
-		{
-			dataField: 'idPago',
-			text: 'codigo',
-			sort: true,
-			filter: textFilter({ placeholder: 'codigo...' })
-		},
 		{
 			dataField: 'valorPago',
 			text: 'Valor de Pago',
@@ -71,9 +60,7 @@ const RegistroPago = props => {
 		}
 	];
 
-	
-const rowEvents = {
-
+	const rowEvents = {
 		onClick: (e, row) => {
 			store.dispatch(
 				receiveTableFilter({
@@ -103,18 +90,22 @@ const rowEvents = {
 	//Botones para el toolbar
 	const toolbarButtons = [
 		{
+			module: MODULOS.ADM_REGISTROPAGO.codigo,
+			permissions: [PERMISOS.escritura],
 			label: 'Volver',
 			actions: { onClick: () => props.history.push(ADMINISTRACION) },
 			icon: faArrowLeft
-		},
-
+		}
 	];
 
 	//return
 	return (
 		<div className='flex-row'>
 			<div className='col-12'>
-				<ToolBar breadcrumbs={ REGISTROPAGO_BREADCRUMBS} buttons={toolbarButtons} />
+				<ToolBar
+					breadcrumbs={REGISTROPAGO_BREADCRUMBS}
+					buttons={toolbarButtons}
+				/>
 				<div className='bg-white'>
 					<Datatable
 						keyField='id'

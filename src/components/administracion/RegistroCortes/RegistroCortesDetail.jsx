@@ -21,7 +21,7 @@ import {
 } from '../../../core/services/notificationService';
 import { REGISTROCORTES_LABELS } from '../RegistroCortes/RegistroCortesUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { REGISTROCORTES } from '../../../shared/constants/registroCortes';
+
 import { MODULOS } from '../../../shared/constants/modulos';
 import { Button } from 'reactstrap';
 import {
@@ -30,6 +30,7 @@ import {
 } from '../../../shared/constants/routesApp';
 import { getLoggedUser, userLogOut } from '../../../core/auth/auth.service';
 import axios from 'axios';
+import { PERMISOS } from '../../../shared/constants/permisos';
 const RegistroCortesDetail = props => {
 	
 	const [idParam, setIdParam] = useState(null);
@@ -78,6 +79,8 @@ const RegistroCortesDetail = props => {
 
 	const toolbarButtons = [
 		{
+			module: MODULOS.ADM_REGISTROCORTES.codigo,
+			permissions: [PERMISOS.lectura, PERMISOS.escritura, PERMISOS.actualizacion],
 			label: 'Volver',
 			actions: { onClick: () => props.history.goBack() },
 			icon: faArrowLeft
@@ -85,7 +88,7 @@ const RegistroCortesDetail = props => {
 
 		{
 			module: MODULOS.ADM_REGISTROCORTES.codigo,
-			permissions: [REGISTROCORTES.escritura, REGISTROCORTES.actualizacion],
+			permissions: [PERMISOS.lectura, PERMISOS.escritura,  PERMISOS.actualizacion],
 			label: 'Actualizar',
 			form: inputsUserDisabled ? '' : 'usuarioForm',
 			icon: faEdit,
@@ -96,7 +99,7 @@ const RegistroCortesDetail = props => {
 
 		{
 			module: MODULOS.ADM_REGISTROCORTES.codigo,
-			permissions: [REGISTROCORTES.escritura, REGISTROCORTES.actualizacion],
+			permissions: [PERMISOS .escritura, PERMISOS.actualizacion],
 			label: 'Borrar Registro',
 			form: inputsUserDisabled ? '' : 'usuarioForm',
 			icon:DataView,

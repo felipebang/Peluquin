@@ -50,9 +50,6 @@ import { PERMISOS } from '../../../shared/constants/permisos';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
 
-
-
-
 const Usuario = props => {
 	//State
 	const [modal, setModal] = useState(false);
@@ -61,7 +58,7 @@ const Usuario = props => {
 	const [filterDataExport, setFilterDataExport] = useState({});
 	const [plantillaUrl, setPlantillaUrl] = useState('');
 	const [archivo, setArchivo] = useState({});
-	const [usuariosList,  setUGananciasList] = useState([]);
+	const [usuariosList, setUGananciasList] = useState([]);
 	const currentFilter = getStoredFilter('Usuario');
 	const [paginationUsuarios, setPaginationUsuarios] = useState(
 		currentFilter
@@ -77,13 +74,6 @@ const Usuario = props => {
 					order: 'asc'
 			  }
 	);
-
-
-
-
-
-
-
 
 	//api
 	const usuariosApi = {
@@ -181,7 +171,7 @@ const Usuario = props => {
 				sizePerPage: response.data.size,
 				totalSize: response.data.totalElements
 			});
-			 setUGananciasList(response.data.content);
+			setUGananciasList(response.data.content);
 			setFilterDataExport({
 				...paginate,
 				page: 0,
@@ -208,7 +198,7 @@ const Usuario = props => {
 				onClick: () => props.history.push(ADM_USUARIOS_NEW)
 			},
 			icon: faUserPlus
-		} ,/* ,
+		} /* ,
 		{
 			label: 'Acciones masivas',
 			children: [

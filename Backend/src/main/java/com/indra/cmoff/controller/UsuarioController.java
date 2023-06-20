@@ -32,6 +32,7 @@ import com.indra.cmoff.dto.UsuarioDTO;
 import com.indra.cmoff.dto.UsuarioRolDTO;
 import com.indra.cmoff.service.IPersonaService;
 import com.indra.cmoff.service.IRolService;
+import com.indra.cmoff.service.IUsuarioRolService;
 import com.indra.cmoff.service.IUsuarioService;
 import com.indra.cmoff.utils.util.Constantes;
 import com.indra.cmoff.utils.util.ConstantesRolesMP;
@@ -51,11 +52,13 @@ public class UsuarioController {
 	private final IUsuarioService usuarioService;
 	private final IRolService rolService;
 	private final IPersonaService PersonaService;
+	private final IUsuarioRolService usuarioRolService; 
 	
-	public UsuarioController(IUsuarioService usuarioService, IRolService rolService, IPersonaService PersonaService) {
+	public UsuarioController(IUsuarioService usuarioService, IRolService rolService, IPersonaService PersonaService, IUsuarioRolService usuarioRolService) {
 		this.usuarioService = usuarioService;
 		this.rolService = rolService;
 		this.PersonaService = PersonaService;
+		this.usuarioRolService = usuarioRolService;
 	}
 	
 	@PreAuthorize("hasRole('"+ ConstantesRolesMP.ROLE_ADM +"') "
@@ -173,7 +176,7 @@ public class UsuarioController {
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
 			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
 	@DeleteMapping(path = { "/delete/{id}" })
-	public Object delete(@PathVariable("id") long codigoEmpleado) {
+	public Object delete(@PathVariable("id") long id) {
 		try {
 
 			
@@ -181,8 +184,8 @@ public class UsuarioController {
 			List<PersonaDTO> lista = new ArrayList<>();
 			lista = listarPersona();
 			for (int i = 0; i < lista.size(); i++) {
-				if (lista.get(i).getCodigoEmpleado() == codigoEmpleado) {
-					PersonaService.deleteById(codigoEmpleado);
+				if (lista.get(i).getCodigoEmpleado() == id) {
+					PersonaService.deleteById(id);
 
 				}
 
@@ -190,9 +193,23 @@ public class UsuarioController {
 
 		
 			
-			//
+			// llamo y borro en REGISTROCORTES,
+			List<UsuarioRolDTO> list = new ArrayList<>();
+			list = listarUsuarioRol();
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getIdUsuario() == id) {
+					usuarioRolService.deleteById(id);
 
-			usuarioService.deleteById(codigoEmpleado);
+				}
+
+			}
+
+			
+			
+			
+			//usuarioRolService
+
+			usuarioService.deleteById(id);
 			statusResponse = HttpStatus.OK;
 			jsonResponse.put(Constantes.CODE, statusResponse);
 		} catch (Exception e) {
@@ -211,7 +228,8 @@ public class UsuarioController {
 
 	
 	
-	
+
+
 	private List<PersonaDTO> listarPersona() {
 		
 		// TODO Auto-generated method stub
@@ -225,5 +243,14 @@ public class UsuarioController {
 	
 	
 	
-	
+private List<UsuarioRolDTO> listarUsuarioRol() {
+		
+		// TODO Auto-generated method stub
+		return   usuarioRolService.findAll();
+	}
+
+	public  IUsuarioRolService getUsuarioRolService() {
+		// TODO Auto-generated method stub
+		return  usuarioRolService;
+	}
 }

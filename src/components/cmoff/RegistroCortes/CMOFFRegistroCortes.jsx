@@ -16,6 +16,7 @@ import networkService from '../../../core/services/networkService';
 import { generatePath } from 'react-router-dom';
 import {
 	ADM_REGISTROCORTES_NEW,
+	CMOFF_REGISTROCORTESCE_NEW,
 	ADM_REGISTROCORTES_DETAIL,
 	ADMINISTRACION,
 	CMOFF
@@ -27,6 +28,7 @@ import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
 import { MODULOS } from '../../../shared/constants/modulos';
 import { PERMISOS } from '../../../shared/constants/permisos';
+import { CMOFFRegistrocortes } from '../../../shared/constants/client';
 
 const CMOFFRegistroCortes = props => {
 	//State
@@ -130,11 +132,11 @@ const CMOFFRegistroCortes = props => {
 			icon: faArrowLeft
 		},
 		{
-			module: MODULOS.ADM_ROLES.codigo,
+			module:MODULOS.CMOFF_REGISTROCORTES.codigo,
 			permissions: [PERMISOS.escritura],
 			label: 'Nuevo',
 		actions: {
-				onClick: () => props.history.push(ADM_REGISTROCORTES_NEW)
+				onClick: () => props.history.push(CMOFF_REGISTROCORTESCE_NEW)
 			},
 			icon: faPlus
 		}
@@ -144,7 +146,7 @@ const CMOFFRegistroCortes = props => {
 	return (
 		<div className='flex-row'>
 			<div className='col-12'>
-				<ToolBar breadcrumbs={REGISTROCORTES_BREADCRUMBS} buttons={toolbarButtons} />
+				<ToolBar breadcrumbs={CMOFFRegistrocortes} buttons={toolbarButtons} />
 				<div className='bg-white'>
 					<Datatable
 						keyField='idRegistroCortes'

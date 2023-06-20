@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { textFilter } from 'react-bootstrap-table2-filter';
 import { withRouter } from 'react-router-dom';
 import {
-  REGISTROCORTES_BREADCRUMBS
-//	ROLES_BREADCRUMBS,
+	REGISTROCORTES_BREADCRUMBS
+	//	ROLES_BREADCRUMBS,
 	//ESTADO_ACTIVO,
 	//ESTADO_INACTIVO
 } from '../../../shared/constants/client';
@@ -20,7 +20,6 @@ import {
 	ADMINISTRACION
 	//ADM_ROLES_NEW,
 	//ADM_ROLES_DETAIL,
-
 } from '../../../shared/constants/routesApp';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
@@ -59,7 +58,6 @@ const RegistroCortes = props => {
 			sort: true,
 			filter: textFilter({ placeholder: 'Código...' })
 		},
-
 		{
 			dataField: 'codigoEmpleado',
 			text: 'Documento identidad',
@@ -67,8 +65,7 @@ const RegistroCortes = props => {
 			filter: textFilter({ placeholder: 'Documento identidad...' })
 		},
 
-
-    {
+		{
 			dataField: 'numeroCortes',
 			text: 'Numero de Cortes',
 			sort: true,
@@ -81,8 +78,6 @@ const RegistroCortes = props => {
 			sort: true,
 			filter: textFilter({ placeholder: 'Fecha de creación...' })
 		}
-
-
 	];
 
 	const rowEvents = {
@@ -93,7 +88,9 @@ const RegistroCortes = props => {
 					jsType: 'RegistroCortes'
 				})
 			);
-			props.history.push(generatePath(ADM_REGISTROCORTES_DETAIL, { id: row.id}));
+			props.history.push(
+				generatePath(ADM_REGISTROCORTES_DETAIL, { id: row.id })
+			);
 		}
 	};
 
@@ -120,10 +117,10 @@ const RegistroCortes = props => {
 			icon: faArrowLeft
 		},
 		{
-			module: MODULOS.ADM_ROLES.codigo,
-			permissions: [PERMISOS.escritura],
+			module: MODULOS.ADM_REGISTROCORTES.codigo,
+			permissions: [PERMISOS.lectura, PERMISOS.escritura, PERMISOS.actualizacion],
 			label: 'Nuevo',
-		actions: {
+			actions: {
 				onClick: () => props.history.push(ADM_REGISTROCORTES_NEW)
 			},
 			icon: faPlus
@@ -134,7 +131,10 @@ const RegistroCortes = props => {
 	return (
 		<div className='flex-row'>
 			<div className='col-12'>
-				<ToolBar breadcrumbs={REGISTROCORTES_BREADCRUMBS} buttons={toolbarButtons} />
+				<ToolBar
+					breadcrumbs={REGISTROCORTES_BREADCRUMBS}
+					buttons={toolbarButtons}
+				/>
 				<div className='bg-white'>
 					<Datatable
 						keyField='idRegistroCortes'

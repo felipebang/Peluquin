@@ -58,33 +58,45 @@ public class PersonaController {
 
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ADMU + ConstantesRolesMP.PRM_L
+			+ "')")*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
 			+ "')")
 	@GetMapping("/{codEmpleado}")
 	public Optional<PersonaDTO> one(@PathVariable Long codEmpleado) {
 		return personaService.findById(codEmpleado);
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
 			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU + ConstantesRolesMP.PRM_L
+			+ "')")*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
 			+ "')")
 	@GetMapping("/buscarporcodigo/{codigo}")
 	public PersonaDTO findByCodigo(@PathVariable Long codigo) {
 		return personaService.findByCodEmpleado(codigo);
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
-			+ ConstantesRolesMP.PRM_L + "')")
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
+			+ ConstantesRolesMP.PRM_L + "')")*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PostMapping("/filternombres")
 	public Page<PersonaDTO> filtrarPorNombre(@RequestBody PaginatedFilter<PersonaDTO> filtro) {
 		return personaService.filtroPagPorNombre(filtro.getPage(), filtro.getSizePerPage(), filtro.getFilter(),
 				filtro.getColumn(), filtro.getOrder());
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
-			+ ConstantesRolesMP.PRM_L + "')")
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
+			+ ConstantesRolesMP.PRM_L + "')")*/
 
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PostMapping("/buscar")
 	public Page<PersonaDTO> buscar(@RequestBody PaginatedFilter<PersonaDTO> filtro) {
 		return personaService.filterPaginated(filtro.getPage(), filtro.getSizePerPage(), filtro.getFilter(),
@@ -92,8 +104,12 @@ public class PersonaController {
 
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
-			+ ConstantesRolesMP.PRM_C + "')")
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+			+ ConstantesRolesMP.PRM_C + "')")*/
+	
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PostMapping("/crear")
 	public Object createNew(@Valid @RequestBody PersonaDTO newPersona) {
 
@@ -118,10 +134,13 @@ public class PersonaController {
 	
 	
 	
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
-			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")*/
 	 //actualizar update partica set subprati='nbnb' wh
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PutMapping(path = { "/actualizar/{id}" })
 	public Object replaceReg(@Valid @RequestBody PersonaDTO personaDto, @PathVariable Long id) {
 		personaDto.setId((long) id);
@@ -136,9 +155,12 @@ public class PersonaController {
 	 * registroCorteService.deleteRegistroCortes(id); }
 	 */
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
-			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@DeleteMapping(path = { "/delete/{id}" })
 	public Object delete(@PathVariable("id") long codigoEmpleado) {
 		try {
@@ -186,23 +208,35 @@ public class PersonaController {
 		
 	}
 
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	private List<RegistroCortesDTO> listarRegistroCortes() {
 		// TODO Auto-generated method stub
 		return  registroCorteService.findAll();
 	}
 
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	public  IRegistroCorteService getRegistroCorteService() {
 		// TODO Auto-generated method stub
 		return registroCorteService;
 	}
 	
 	
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	private List<UsuarioDTO> listarUsuario() {
 		
 		// TODO Auto-generated method stub
 		return  usuarioService.findAll();
 	}
 
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	public  IUsuarioService getUsuarioService() {
 		// TODO Auto-generated method stub
 		return usuarioService;

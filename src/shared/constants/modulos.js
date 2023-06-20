@@ -29,18 +29,11 @@ export const MODULOS = {
 
 
 	CMOFF_REGISTROCORTES:{
-		codigo: 'RCT',
+		codigo: 'IMPFORM',
 		nombreLargo: 'Registro de cortes',
 		nombreCorto: 'Registro de cortes'
 	},
 	
-
-
-
-
-
-
-
 
 	ADMINISTRACION: {
 		codigo: 'ADMIN',

@@ -109,6 +109,8 @@ const Porcentaje = props => {
 	//Botones para el toolbar
 	const toolbarButtons = [
 		{
+			module: MODULOS.ADM_PORCENTAJE.codigo,
+			permissions: [PERMISOS.escritura],
 			label: 'Volver',
 			actions: { onClick: () => props.history.push(ADMINISTRACION) },
 			icon: faArrowLeft

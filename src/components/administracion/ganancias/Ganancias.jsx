@@ -10,14 +10,12 @@ import Datatable, {
 } from '../../../shared/datatable/Datatable';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import networkService from '../../../core/services/networkService';
-import { generatePath } from 'react-router-dom';
 import {
 	ADMINISTRACION
 } from '../../../shared/constants/routesApp';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
 import { MODULOS } from '../../../shared/constants/modulos';
-import { GANANCIAS } from '../../../shared/constants/ganancias';
 import { PERMISOS } from '../../../shared/constants/permisos';
 const Ganancias = props => {
 	//State
@@ -52,10 +50,9 @@ const Ganancias = props => {
 	
 
 		{
-			dataField: 'id',
-			text: 'Código',
-			sort: true,
-			filter: textFilter({ placeholder: 'Código...' })
+			
+			text: 'Administrador',
+			
 		},
 	
 		{
@@ -104,6 +101,8 @@ const rowEvents = {
 	//Botones para el toolbar
 	const toolbarButtons = [
 		{
+			module: MODULOS.ADM_GANANCIAS.codigo,
+			permissions: [PERMISOS.escritura],
 			label: 'Volver',
 			actions: { onClick: () => props.history.push(ADMINISTRACION) },
 			icon: faArrowLeft

@@ -74,32 +74,51 @@ public class RegistroCortesController {
 
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ADMU + ConstantesRolesMP.PRM_L
+			+ "')" +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"     )*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
 			+ "')")
 	@GetMapping("/{codEmpleado}")
 	public Optional<RegistroCortesDTO> one(@PathVariable Long codEmpleado) {
 		return registroCorteService.findById(codEmpleado);
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
 			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU + ConstantesRolesMP.PRM_L
+			+ "')"  +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"     )*/
+	
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
 			+ "')")
 	@GetMapping("/buscarporcodigo/{codigo}")
 	public RegistroCortesDTO findByCodigo(@PathVariable Long codigo) {
 		return registroCorteService.findByCodEmpleado(codigo);
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
-			+ ConstantesRolesMP.PRM_L + "')")
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ADMU
+			+ ConstantesRolesMP.PRM_L + "')" +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"   )*/
+	
+	
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PostMapping("/filternombres")
 	public Page<RegistroCortesDTO> filtrarPorNombre(@RequestBody PaginatedFilter<RegistroCortesDTO> filtro) {
 		return registroCorteService.filtroPagPorNombre(filtro.getPage(), filtro.getSizePerPage(), filtro.getFilter(),
 				filtro.getColumn(), filtro.getOrder());
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
-			+ ConstantesRolesMP.PRM_L + "')")
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.FCHPERS
+			+ ConstantesRolesMP.PRM_L + "')" +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"   )*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PostMapping("/buscar")
 	public Page<RegistroCortesDTO> buscar(@RequestBody PaginatedFilter<RegistroCortesDTO> filtro) {
 		return registroCorteService.filterPaginated(filtro.getPage(), filtro.getSizePerPage(), filtro.getFilter(),
@@ -107,8 +126,12 @@ public class RegistroCortesController {
 
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
-			+ ConstantesRolesMP.PRM_C + "')")
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+			+ ConstantesRolesMP.PRM_C + "')" +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"   )*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PostMapping("/crear")
 	public Object createNew(@Valid @RequestBody RegistroCortesDTO newRegistroCortes) {
 
@@ -171,21 +194,33 @@ public class RegistroCortesController {
 		return new ResponseEntity<>(jsonResponse, statusResponse);
 
 	}
-
+	
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	private List<GananciasDTO> listarGanancias() {
 		// TODO Auto-generated method stub
 		return gananciaService.findAll();
 	}
-
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	private List<RegistroPagoDTO> listarRegistroPago() {
 		// TODO Auto-generated method stub
 		return registroPagoService.findAll();
 	}
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
-			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")*/
+	
+	
+	
 	 //actualizar update partica set subprati='nbnb' wh
+	
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@PutMapping(path = { "/actualizar/{id}" })
 	public Object replaceReg(@Valid @RequestBody RegistroCortesDTO registrDto, @PathVariable Long id) {
 		registrDto.setId((long) id);
@@ -199,14 +234,18 @@ public class RegistroCortesController {
 	 * registroCorteService.deleteRegistroCortes(id); }
 	 */
 
-	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
 			+ ConstantesRolesMP.PRM_L + "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_C
-			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")
+			+ "')" + "or hasAuthority('" + ConstantesRolesMP.ROLPE + ConstantesRolesMP.PRM_A + "')")*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@DeleteMapping(path = { "/delete/{id}" })
 	public Object delete(@PathVariable("id") long id) {
 		try {
 
 			// llamo y borro en ganancias, registro_pago
+			
 			List<GananciasDTO> lista = new ArrayList<>();
 			lista = listarGanancias();
 			// System.out.printf( " tamaño "+lista.size());
@@ -245,13 +284,23 @@ public class RegistroCortesController {
 
 		
 		
-		
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+			+ ConstantesRolesMP.PRM_C + "')" +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"   )*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	@GetMapping("/listarValorPorcentaje")
 	public List<PorcentajeDTO> listarPorcentaje() {
 		return porcentajeService.findAll();
 	}
 
-
+	/*@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "') " + "or hasAuthority('" + ConstantesRolesMP.ROLPE
+			+ ConstantesRolesMP.PRM_C + "')" +  "or hasAuthority('" + ConstantesRolesMP.IMPO
+			+ ConstantesRolesMP.PRM_L + ConstantesRolesMP.PRM_C +   "')"   )*/
+	@PreAuthorize("hasRole('" + ConstantesRolesMP.ROLE_ADM + "')" + "or hasAuthority('" + ConstantesRolesMP.RRHH
+			+ ConstantesRolesMP.PRM_C + "') " + "or hasAuthority('" + ConstantesRolesMP.RRHH + ConstantesRolesMP.PRM_L
+			+ "')")
 	public IRegistroPagoService getRegistroPagoService() {
 		return registroPagoService;
 	}
