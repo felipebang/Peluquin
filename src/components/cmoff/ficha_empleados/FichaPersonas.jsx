@@ -6,7 +6,6 @@ import { FICHA_EMPLEADOS_BREADCRUMBS } from '../../../shared/constants/client';
 import Datatable from '../../../shared/datatable/Datatable';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import {
-	CMOFF,
 	ADMINISTRACION,
 	CMOFF_FICHA_EMPLEADOS_PERSONAL,
 	ADM_EMPLEADOS_NEW
@@ -43,45 +42,43 @@ const FichaPersonas = props => {
 	const columns = [
 		{
 			dataField: 'nombres',
-			text: 'Persona',
+			text: 'Nombre y Apellidos',
 			sort: true,
 			filter: textFilter({ placeholder: 'Nombre o apellidos...' }),
 			title: (cell, row) => {
 				return (
 					(row.nombres || '') +
 					' ' +
-					(row.apellido1 || '') +
-					' ' +
-					(row.apellido2 || '')
+					(row.apellido || '') 
+				
 				);
 			},
 			formatter: (cellContent, row) => {
 				return (
 					(row.nombres || '') +
 					' ' +
-					(row.apellido1 || '') +
-					' ' +
-					(row.apellido2 || '')
+					(row.apellido || '') 
+				
 				);
 			}
 		},
 		{
 			dataField: 'codigoEmpleado',
-			text: 'Documento identidad',
+			text: 'Documento Identidad',
 			sort: true,
-			filter: textFilter({ placeholder: 'Documento identidad...' })
+			filter: textFilter({ placeholder: 'Documento Identidad...' })
 		},
 		{
-			dataField: 'empresa',
-			text: 'Empresa',
+			dataField: 'email',
+			text: 'Email',
 			sort: true,
-			filter: textFilter({ placeholder: 'Empresa...' })
+			filter: textFilter({ placeholder: 'Email..' })
 		},
 		{
-			dataField: 'funcionPrincipal',
-			text: 'Función principal',
+			dataField: 'celular',
+			text: 'Telefono-celular',
 			sort: true,
-			filter: textFilter({ placeholder: 'Función principal...' })
+			filter: textFilter({ placeholder: 'Telefono-celular...' })
 		}
 	];
 

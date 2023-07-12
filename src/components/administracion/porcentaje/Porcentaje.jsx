@@ -2,27 +2,13 @@ import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { textFilter } from 'react-bootstrap-table2-filter';
 import { withRouter } from 'react-router-dom';
-import {
-	PORCENTAJE_BREADCRUMBS
-//	ROLES_BREADCRUMBS,
-	//ESTADO_ACTIVO,
-	//ESTADO_INACTIVO
-} from '../../../shared/constants/client';
+import {PORCENTAJE_BREADCRUMBS} from '../../../shared/constants/client';
 import Datatable, {
 	getStoredFilter
 } from '../../../shared/datatable/Datatable';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import networkService from '../../../core/services/networkService';
-import { generatePath } from 'react-router-dom';
-import {
-
-	
-
-	ADMINISTRACION
-	//ADM_ROLES_NEW,
-	//ADM_ROLES_DETAIL,
-
-} from '../../../shared/constants/routesApp';
+import {ADMINISTRACION} from '../../../shared/constants/routesApp';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
 import { MODULOS } from '../../../shared/constants/modulos';
@@ -53,19 +39,14 @@ const Porcentaje = props => {
 
 	// Datatable
 	const columns = [
-		{
-			dataField: 'idPorcentaje',
-			text: 'Código',
-			sort: true,
-			filter: textFilter({ placeholder: 'Código...' })
-		},
+	
 
 		
 		{
 			dataField: 'porcentajeEmpl', 
-			text: 'Empleado',
+			text: 'Porcenta',
 			sort: true,
-			filter: textFilter({ placeholder: 'CodEmpleado...' })
+			filter: textFilter({ placeholder: 'Porcenta...' })
 		},
 
 

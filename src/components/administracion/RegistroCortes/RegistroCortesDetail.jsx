@@ -1,86 +1,47 @@
 import {
 	faArrowLeft,
 	faIdCardAlt,
-	faSave,
 	faEdit
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from 'reactstrap';
-import { generatePath } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import ToolBar from '../../../shared/toolbar/ToolBar';
-import {
-	REGISTROCORTES_EDIT_BREADCRUMBS,
-	MESSAGE_ERROR
-} from '../../../shared/constants/client';
+import { REGISTROCORTES_EDIT_BREADCRUMBS } from '../../../shared/constants/client';
 import { AvField, AvForm } from 'availity-reactstrap-validation';
 import networkService from '../../../core/services/networkService';
-import {
-	notificationError,
-	notificationSuccess
-} from '../../../core/services/notificationService';
+import { notificationSuccess } from '../../../core/services/notificationService';
 import { REGISTROCORTES_LABELS } from '../RegistroCortes/RegistroCortesUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { MODULOS } from '../../../shared/constants/modulos';
-import { Button } from 'reactstrap';
-import {
-	ADM_REGISTROCORTES,
-	ADM_REGISTROCORTES_DETAIL
-} from '../../../shared/constants/routesApp';
-import { getLoggedUser, userLogOut } from '../../../core/auth/auth.service';
-import axios from 'axios';
+import { ADM_REGISTROCORTES } from '../../../shared/constants/routesApp';
 import { PERMISOS } from '../../../shared/constants/permisos';
 const RegistroCortesDetail = props => {
-	
-	const [idParam, setIdParam] = useState(null);
 	const [inputsUserDisabled, setInputsUserDisabled] = useState(false);
-	const [rolesError, setRolesError] = useState(false);
-	const userLogged = getLoggedUser();
-	const [estadoError, setEstadoError] = useState(false);
 
-	
-
-
-
-
-	const empleadoInitialState = {
-	
-		numeroCortes: '',
-		valorCorte: '',
-		codigoEmpleado: '',
-		registroCortesDTOList: {}
-		
-			
-	};
-
-
-	
 	const [persona, setPersona] = useState({
 		idRegistroCorte: '',
 		numeroCortes: '',
 		valorCorte: '',
 		codigoEmpleado: '',
 		registroCortesDTOList: {}
-	
 	});
-
-	const [rolesUsuario, setRolesUsuario] = useState([]);
-	const [personaService , setCodEmpleadoBuscar] = useState('');
-	const [checked, setChecked] = useState([]);
 
 	//api
 	const empleadosApi = {
 		registrocortes: '/registrocortes/',
 		update: '/registrocortes/actualizar/',
 		delete: '/registrocortes/delete/'
-		
 	};
 
 	const toolbarButtons = [
 		{
 			module: MODULOS.ADM_REGISTROCORTES.codigo,
-			permissions: [PERMISOS.lectura, PERMISOS.escritura, PERMISOS.actualizacion],
+			permissions: [
+				PERMISOS.lectura,
+				PERMISOS.escritura,
+				PERMISOS.actualizacion
+			],
 			label: 'Volver',
 			actions: { onClick: () => props.history.goBack() },
 			icon: faArrowLeft
@@ -88,7 +49,11 @@ const RegistroCortesDetail = props => {
 
 		{
 			module: MODULOS.ADM_REGISTROCORTES.codigo,
-			permissions: [PERMISOS.lectura, PERMISOS.escritura,  PERMISOS.actualizacion],
+			permissions: [
+				PERMISOS.lectura,
+				PERMISOS.escritura,
+				PERMISOS.actualizacion
+			],
 			label: 'Actualizar',
 			form: inputsUserDisabled ? '' : 'usuarioForm',
 			icon: faEdit,
@@ -99,10 +64,10 @@ const RegistroCortesDetail = props => {
 
 		{
 			module: MODULOS.ADM_REGISTROCORTES.codigo,
-			permissions: [PERMISOS .escritura, PERMISOS.actualizacion],
+			permissions: [PERMISOS.escritura, PERMISOS.actualizacion],
 			label: 'Borrar Registro',
 			form: inputsUserDisabled ? '' : 'usuarioForm',
-			icon:DataView,
+			icon: DataView,
 			actions: {
 				onClick: () => deleteBook(props.match.params.id)
 			}
@@ -110,7 +75,6 @@ const RegistroCortesDetail = props => {
 	];
 
 	useEffect(() => {
-
 		networkService
 			.get(empleadosApi.registrocortes + props.match.params.id)
 			.then(response => {
@@ -145,8 +109,6 @@ const RegistroCortesDetail = props => {
 			});
 	};
 
-
-
 	const handleInputChange = event => {
 		console.log(event.target.value);
 
@@ -164,32 +126,20 @@ const RegistroCortesDetail = props => {
 		});
 	};
 
-//delete
-	const deleteBook = IdRegistroCorte =>{
-		if(window.confirm("¿Realmente desea eliminar el registro?")) {
-		networkService
-			.delete(empleadosApi.delete + IdRegistroCorte )
-			.then(response => {
-				notificationSuccess(response.data).then(r =>
-					props.history.push(ADM_REGISTROCORTES)
-				
-				);
-			});
-
-
+	//delete
+	const deleteBook = IdRegistroCorte => {
+		if (window.confirm('¿Realmente desea eliminar el registro?')) {
+			networkService
+				.delete(empleadosApi.delete + IdRegistroCorte)
+				.then(response => {
+					notificationSuccess(response.data).then(r =>
+						props.history.push(ADM_REGISTROCORTES)
+					);
+				});
 		}
-	}
+	};
 
-
-
-
-
-
-
-
-
-
-		/*
+	/*
 		{
 		
 		const cortesRequest = { ...persona };
@@ -234,22 +184,9 @@ const RegistroCortesDetail = props => {
 
 */
 
-
-
-
-
-				
-		//	console.log(delete(pidRegistroCorte));
+	//	console.log(delete(pidRegistroCorte));
 
 	//	return false;
-					
-	
-
-
-	
-
-
-
 
 	return (
 		<div className='flex-row'>
@@ -309,7 +246,6 @@ const RegistroCortesDetail = props => {
 									htmlFor='example-text-input'
 									className='col-5 col-form-label'>
 									{REGISTROCORTES_LABELS.NUMEROCORTES}
-								
 								</label>
 								<div className='col-7'>
 									<AvField
@@ -326,13 +262,12 @@ const RegistroCortesDetail = props => {
 									htmlFor='example-text-input'
 									className='col-5 col-form-label'>
 									{' ' + REGISTROCORTES_LABELS.VALORCORTE}
-								
 								</label>
 								<div className='col-7'>
 									<AvField
 										name='valorCorte'
 										type='number'
-										value={persona.valorCorte || ''}
+										value={persona.valorCorte}
 										onChange={handleInputChangecortes}
 										autoComplete='valorCorte'
 										validate={{

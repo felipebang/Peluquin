@@ -86,12 +86,10 @@ public class PersonaDAO implements IPersonaDAO{
 		if (ObjectUtils.isNotEmpty(entity.getCodigoEmpleado())) {
 			where = where.and(QPersona.persona.codigoEmpleado.eq(entity.getCodigoEmpleado()));
 		}
-		if (!Strings.isNullOrEmpty(entity.getEmpresa())) {
-			where = where.and(QPersona.persona.empresa.containsIgnoreCase(entity.getEmpresa()));
+		if (!Strings.isNullOrEmpty(entity.getEmail())) {
+			where = where.and(QPersona.persona.empresa.containsIgnoreCase(entity.getEmail()));
 		}
-		if (!Strings.isNullOrEmpty(entity.getFuncionPrincipal())) {
-			where = where.and(QPersona.persona.funcionPrincipal.containsIgnoreCase(entity.getFuncionPrincipal()));
-		}
+	
 		return where;
 	}
 

@@ -1,5 +1,5 @@
 export const USUARIO_LABELS = {
-	groupBusquedaEmpleado: 'Busqueda de empleado',
+	groupBusquedaEmpleado: 'Búsqueda por documento identidad',
 	groupInformacionCuenta: 'Información de cuenta',
 	groupConfiguracionPerfil: 'Configuración de roles',
 	usuario: 'Usuario',

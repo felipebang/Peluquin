@@ -27,27 +27,20 @@ public class Persona implements Serializable {
 	@Column(name = "sb_nombre", nullable = false, length = 240)
 	private String nombres;
 	
-	@Column(name = "sb_apellido_1", nullable = false, length = 45)
-	private String apellido1;
-	
-	@Column(name = "sb_apellido_2", length = 45)
-	private String apellido2;
+	@Column(name = "sb_apellido", nullable = false, length = 45)
+	private String apellido;
 	
 	@Column(name = "sb_email", nullable = false, length = 240)
 	private String email;
 	
-	@Column(name = "sb_empresa", nullable = false, length = 450)
-	private String empresa;
+	@Column(name = "sb_celular", nullable = false, length = 450)
+	private String celular;
 	
-	@Column(name = "sb_funcion_principal", nullable = false, length = 450)
-	private String funcionPrincipal;
+	@Column(name = "sb_direccion", nullable = false, length = 450)
+	private String direccion;
 	
 	
-	@Column(name = "sb_pais", nullable = false, length = 45)
-	private String pais;
 	
-	@Column(name = "sb_provincia", nullable = false, length = 45)
-	private String provincia;
 	
 
 	

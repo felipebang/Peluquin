@@ -12,11 +12,6 @@ export const MODULOS = {
 	},
 
 
-	ITI_FORMATIVOS_IMPORTACION: {
-		codigo: 'IMPFORM',
-		nombreLargo: 'Importación de archivos',
-		nombreCorto: 'Importación de archivos'
-	},
 
 
 

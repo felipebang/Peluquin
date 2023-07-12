@@ -210,14 +210,13 @@ const RegistroCortesCe = props => {
 				}
 				if (
 					element.hasOwnProperty('nombres') &&
-					element.hasOwnProperty('apellido1')
+					element.hasOwnProperty('apellido')
 				) {
 					element.label =
 						element['nombres'] +
 						' ' +
-						element['apellido1'] +
-						' ' +
-						(element['apellido2'] ? element['apellido2'] : '');
+						element['apellido']
+				
 				}
 			} else if (type === 'roles') {
 				if (element.hasOwnProperty(value)) {
@@ -391,10 +390,10 @@ const RegistroCortesCe = props => {
 					<div className='row pt-1'>
 						<div className='border-bottom col-12 col-sm-12 col-md-12 col-lg-12'>
 							<fieldset className=' col '>
-								<legend className='h5 pt-2'>
+								{/* <legend className='h5 pt-2'>
 									<FontAwesomeIcon icon={faSearch} className='text-secondary' />
 									{' ' + USUARIO_LABELS.groupBusquedaEmpleado}
-								</legend>
+								</legend> */}
 								<br />
 
 								<div className='form-group row'>

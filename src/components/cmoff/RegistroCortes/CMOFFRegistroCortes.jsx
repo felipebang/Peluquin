@@ -2,28 +2,12 @@ import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { textFilter } from 'react-bootstrap-table2-filter';
 import { withRouter } from 'react-router-dom';
-import {
-  REGISTROCORTES_BREADCRUMBS
-//	ROLES_BREADCRUMBS,
-	//ESTADO_ACTIVO,
-	//ESTADO_INACTIVO
-} from '../../../shared/constants/client';
 import Datatable, {
 	getStoredFilter
 } from '../../../shared/datatable/Datatable';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import networkService from '../../../core/services/networkService';
-import { generatePath } from 'react-router-dom';
-import {
-	ADM_REGISTROCORTES_NEW,
-	CMOFF_REGISTROCORTESCE_NEW,
-	ADM_REGISTROCORTES_DETAIL,
-	ADMINISTRACION,
-	CMOFF
-	//ADM_ROLES_NEW,
-	//ADM_ROLES_DETAIL,
-
-} from '../../../shared/constants/routesApp';
+import {CMOFF_REGISTROCORTESCE_NEW,CMOFF} from '../../../shared/constants/routesApp';
 import store from '../../../store/redux.store';
 import { receiveTableFilter } from '../../../store/redux.actions';
 import { MODULOS } from '../../../shared/constants/modulos';
@@ -70,13 +54,6 @@ const CMOFFRegistroCortes = props => {
 			filter: textFilter({ placeholder: 'Documento identidad...' })
 		},
 
-
-		{
-			dataField: 'idPorcentaje',
-			text: 'Porcentaje',
-			sort: true,
-			filter: textFilter({ placeholder: 'Porcentaje...' })
-		},
 
 	
 

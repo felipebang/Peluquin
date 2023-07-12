@@ -25,10 +25,7 @@ public class PersonaDTO extends BaseDTO {
 
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 255, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
-	private String apellido1;
-
-	@Size(max = 255, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
-	private String apellido2;
+	private String apellido;
 
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 240, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
@@ -41,19 +38,13 @@ public class PersonaDTO extends BaseDTO {
 
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 450, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
-	private String empresa;
+	private String celular;
 
 	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 	@Size(max = 45, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
-	private String pais;
+	private String direccion;
 
-	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
-	@Size(max = 45, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
-	private String provincia;
 
-	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
-	@Size(max = 450, message = Constantes.MENSAJE_EXCEDE_TAMANO_MAXIMO)
-	private String funcionPrincipal;
 
 //	@NotEmpty(message = Constantes.MENSAJE_CAMPO_REQUERIDO)
 //	private String dominioTecnologico;
@@ -63,9 +54,9 @@ public class PersonaDTO extends BaseDTO {
 
 	public String getNombreCompleto() {
 		StringBuilder nombreCompleto = new StringBuilder("");
-		nombreCompleto.append(nombres).append(" ").append(apellido1);
-		if (StringUtils.isNotEmpty(apellido2)) {
-			nombreCompleto.append(" ").append(apellido2);
+		nombreCompleto.append(nombres).append(" ").append(apellido);
+		if (StringUtils.isNotEmpty(apellido)) {
+			nombreCompleto.append(" ").append(apellido);
 		}
 		return nombreCompleto.toString();
 	}

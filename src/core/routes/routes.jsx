@@ -26,7 +26,6 @@ import {
 	ADM_REGISTROCORTES_DETAIL,
 	ADM_REGISTROCORTES_NEW,
 	ADM_REGISTROCORTES_EDIT,
-	ADM_HISTORIAGANANCIAS,
 	ADM_PORCENTAJE,
 	ADM_REGISTROPAGO
 } from '../../shared/constants/routesApp';
@@ -37,7 +36,7 @@ import RouteCustom from './RouteCustom';
 
 import FichaPersonas from '../../components/cmoff/ficha_empleados/FichaPersonas';
 import FichaPersonal from '../../components/cmoff/ficha_empleados/FichaPersonal';
-import Importacion from '../../components/cmoff/importacion/Importacion';
+
 
 import Usuario from '../../components/administracion/usuario/Usuario';
 import UsuarioCE from '../../components/administracion/usuario/UsuarioCE';
@@ -52,7 +51,7 @@ import RegistroCortes from '../../components/administracion/RegistroCortes/Regis
 import RegistroCortesCE from '../../components/administracion/RegistroCortes/RegistroCortesCe';
 import RegistroCortesDetail from '../../components/administracion/RegistroCortes/RegistroCortesDetail';
 
-import HistoriaGanancias from '../../components/administracion/HistoriaGanancias/HistoriaGanancias';
+
 
 import Porcentaje from '../../components/administracion/porcentaje/Porcentaje';
 
@@ -61,7 +60,6 @@ import registroPago from '../../components/administracion/RegistroPago/RegistroP
 import CMOFFRegistroCortes from '../../components/cmoff/RegistroCortes/CMOFFRegistroCortes';
 import CMOFFRegistroCortesCE from '../../components/cmoff/RegistroCortes/RegistroCortesCe';
 
-import CMOFFRegistroPago from '../../components/cmoff/RegistroPago/CMOFFRegistroPago';
 
 class Routes extends Component {
 	render() {
@@ -122,13 +120,7 @@ class Routes extends Component {
 						privateRoute={true}
 					/>
 
-					<RouteCustom
-						exact={true}
-						path={ITI_FORMATIVOS_IMPORTACION}
-						layout={LayoutBack}
-						component={Importacion}
-						privateRoute={true}
-					/>
+			
 
 					<RouteCustom
 						exact={true}
@@ -145,13 +137,7 @@ class Routes extends Component {
 						privateRoute={true}
 					/>
 
-					<RouteCustom
-						exact={true}
-						path={CMOFF_REGISTROPAGO}
-						layout={LayoutBack}
-						component={CMOFFRegistroPago}
-						privateRoute={true}
-					/>
+			
 
 					{/**
 					 *  modulos de administracion
@@ -215,13 +201,7 @@ class Routes extends Component {
 						privateRoute={true}
 					/>
 
-					<RouteCustom
-						exact={true}
-						path={ADM_HISTORIAGANANCIAS}
-						layout={LayoutBack}
-						component={HistoriaGanancias}
-						privateRoute={true}
-					/>
+				
 
 					<RouteCustom
 						exact={true}

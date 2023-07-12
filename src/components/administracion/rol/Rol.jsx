@@ -101,16 +101,16 @@ const Rol = props => {
 			label: 'Volver',
 			actions: { onClick: () => props.history.push(ADMINISTRACION) },
 			icon: faArrowLeft
-		},
-		{
-			module: MODULOS.ADM_ROLES.codigo,
-			permissions: [PERMISOS.escritura],
-			label: 'Nuevo',
-			actions: {
-				onClick: () => props.history.push(ADM_ROLES_NEW)
-			},
-			icon: faPlus
 		}
+		// {
+		// 	module: MODULOS.ADM_ROLES.codigo,
+		// 	permissions: [PERMISOS.escritura],
+		// 	label: 'Nuevo',
+		// 	actions: {
+		// 		onClick: () => props.history.push(ADM_ROLES_NEW)
+		// 	},
+		// 	icon: faPlus
+		// }
 	];
 
 	//return

@@ -203,14 +203,14 @@ const UsuarioCE = props => {
 				}
 				if (
 					element.hasOwnProperty('nombres') &&
-					element.hasOwnProperty('apellido1')
+					element.hasOwnProperty('apellido')
 				) {
 					element.label =
 						element['nombres'] +
 						' ' +
-						element['apellido1'] +
+						element['apellido'] +
 						' ' +
-						(element['apellido2'] ? element['apellido2'] : '');
+						(element['apellido'] ? element['apellido'] : '');
 				}
 			} else if (type === 'roles') {
 				if (element.hasOwnProperty(value)) {
@@ -475,7 +475,7 @@ const UsuarioCE = props => {
 
 
 
-		//delete
+		// // delete
 		// const deleteBook = IdRegistroCorte =>{
 		// 	if(window.confirm("¿Realmente desea eliminar el registro?")) {
 		// 	networkService
@@ -617,7 +617,7 @@ const UsuarioCE = props => {
 											className='form-control'
 											type='text'
 											value={
-												empleado.apellido1 +
+												empleado.apellido +
 												' ' +
 												(empleado.apellido2 ? empleado.apellido2 : '')
 											}
@@ -628,14 +628,14 @@ const UsuarioCE = props => {
 									<label
 										htmlFor='example-text-input'
 										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.PAIS}
+										{FICHAPERSONAL_LABELS.DIRECCION}
 									</label>
 									<div className='col-7'>
 										<input
 											readOnly={true}
 											className='form-control'
 											type='text'
-											value={empleado.pais || ''}
+											value={empleado.direccion || ''}
 										/>
 									</div>
 								</FormGroup>
@@ -643,14 +643,14 @@ const UsuarioCE = props => {
 									<label
 										htmlFor='example-text-input'
 										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.PROVINCIA}
+										{FICHAPERSONAL_LABELS.COMPANIA}
 									</label>
 									<div className='col-7'>
 										<input
 											readOnly={true}
 											className='form-control'
 											type='text'
-											value={empleado.provincia || ''}
+											value={empleado.celular || ''}
 										/>
 									</div>
 								</FormGroup>

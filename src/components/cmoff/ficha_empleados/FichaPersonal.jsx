@@ -1,44 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { FICHA_EMPLEADOS_PERSONAL_BREADCRUMBS,  } from '../../../shared/constants/client';
+import { FICHA_EMPLEADOS_PERSONAL_BREADCRUMBS } from '../../../shared/constants/client';
 import ToolBar from '../../../shared/toolbar/ToolBar';
 import {
 	faArrowLeft,
 	faIdCardAlt,
 	faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
-import {
-	Nav,
-	NavItem,
-	NavLink,
-	FormGroup,
-	
-} from 'reactstrap';
+import { Nav, NavItem, NavLink, FormGroup } from 'reactstrap';
 import { FICHAPERSONAL_LABELS } from './FichaEmpleadosUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Datatable from '../../../shared/datatable/Datatable';
-import { Button } from 'reactstrap';
 import networkService from '../../../core/services/networkService';
-import moment from 'moment';
-import {
-	notificationError,
-	notificationSuccess
-} from '../../../core/services/notificationService';
+import { notificationSuccess } from '../../../core/services/notificationService';
 import '../styles.css';
-import {
-	ITI_FICHA_EMPLEADOS
-} from '../../../shared/constants/routesApp';
+import { ITI_FICHA_EMPLEADOS } from '../../../shared/constants/routesApp';
 
 const FichaPersonal = props => {
 	const [informacionState, setInformacionState] = useState(true);
 
 	const [persona, setPersona] = useState({});
 
-
-
-
 	const [modalDownload, setModalDownload] = useState(false);
-
 
 	const toolbarButtons = [
 		{
@@ -47,31 +29,20 @@ const FichaPersonal = props => {
 			icon: faArrowLeft
 		},
 
-
-
-
-		
 		{
-			
-			
 			label: 'Borrar colaborador',
-			form: modalDownload? '' : 'usuarioForm',
-			icon:DataView,
+			form: modalDownload ? '' : 'usuarioForm',
+			icon: DataView,
 			actions: {
 				onClick: () => deleteBook(props.match.params.id)
 			}
 		}
-		
 	];
 
 	const fichaPersonalApi = {
 		persona: '/persona/',
 		delete: '/persona/delete/'
-	
 	};
-
-
-
 
 	useEffect(() => {
 		networkService
@@ -91,29 +62,23 @@ const FichaPersonal = props => {
 			column: 'id',
 			order: 'asc'
 		};
-
 	}, []);
 
 	const toggleDownload = () => {
 		setModalDownload(!modalDownload);
-	
 	};
 
-
-	const deleteBook = codigoEmpleado =>{
-		if(window.confirm("¿Realmente desea eliminar el registro?")) {
-		networkService
-			.delete(fichaPersonalApi.delete + codigoEmpleado )
-			.then(response => {
-				notificationSuccess(response.data).then(r =>
-					props.history.push(ITI_FICHA_EMPLEADOS)
-				
-				);
-			});
-
-
+	const deleteBook = codigoEmpleado => {
+		if (window.confirm('¿Realmente desea eliminar el registro?')) {
+			networkService
+				.delete(fichaPersonalApi.delete + codigoEmpleado)
+				.then(response => {
+					notificationSuccess(response.data).then(r =>
+						props.history.push(ITI_FICHA_EMPLEADOS)
+					);
+				});
 		}
-	}
+	};
 
 	return (
 		<div className='flex-row'>
@@ -129,13 +94,11 @@ const FichaPersonal = props => {
 								active={informacionState}
 								onClick={() => {
 									setInformacionState(true);
-								
 								}}
 								href='#'>
 								{FICHAPERSONAL_LABELS.INFORMACION}
 							</NavLink>
 						</NavItem>
-				
 					</Nav>
 				</div>
 				<br />
@@ -174,11 +137,7 @@ const FichaPersonal = props => {
 											readOnly={true}
 											className='form-control'
 											type='text'
-											value={
-												persona.apellido1 +
-												' ' +
-												(persona.apellido2 ? persona.apellido2 : '')
-											}
+											value={persona.apellido || ''}
 										/>
 									</div>
 								</FormGroup>
@@ -186,44 +145,14 @@ const FichaPersonal = props => {
 									<label
 										htmlFor='example-text-input'
 										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.PAIS}
+										{FICHAPERSONAL_LABELS.DIRECCION}
 									</label>
 									<div className='col-7'>
 										<input
 											readOnly={true}
 											className='form-control'
 											type='text'
-											value={persona.pais || ''}
-										/>
-									</div>
-								</FormGroup>
-								<FormGroup className='row'>
-									<label
-										htmlFor='example-text-input'
-										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.PROVINCIA}
-									</label>
-									<div className='col-7'>
-										<input
-											readOnly={true}
-											className='form-control'
-											type='text'
-											value={persona.provincia || ''}
-										/>
-									</div>
-								</FormGroup>
-								<FormGroup className='row'>
-									<label
-										htmlFor='example-text-input'
-										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.IDIOMA_NATIVO}
-									</label>
-									<div className='col-7'>
-										<input
-											readOnly={true}
-											className='form-control'
-											type='text'
-											value={persona.idiomaNativo || ''}
+											value={persona.direccion || ''}
 										/>
 									</div>
 								</FormGroup>
@@ -264,25 +193,11 @@ const FichaPersonal = props => {
 													readOnly={true}
 													className='form-control'
 													type='text'
-													value={persona.empresa || ''}
+													value={persona.celular || ''}
 												/>
 											</div>
 										</FormGroup>
-										<FormGroup className='row'>
-											<label
-												htmlFor='example-text-input'
-												className='col-5 col-form-label'>
-												{FICHAPERSONAL_LABELS.FUNCION_PRINCIPAL}
-											</label>
-											<div className='col-7'>
-												<input
-													readOnly={true}
-													className='form-control'
-													type='text'
-													value={persona.funcionPrincipal || ''}
-												/>
-											</div>
-										</FormGroup>
+
 										<FormGroup className='row'>
 											<label
 												htmlFor='example-text-input'
@@ -306,8 +221,6 @@ const FichaPersonal = props => {
 				) : (
 					''
 				)}
-			
-			
 			</div>
 		</div>
 	);

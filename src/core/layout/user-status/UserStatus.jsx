@@ -32,7 +32,7 @@ const UserStatus = history => {
 					{userLogged && userLogged.persona ? (
 						<DropdownToggle tag='span'>
 							{userLogged.persona.nombres[0].toUpperCase() +
-								userLogged.persona.apellido1[0].toUpperCase()}
+								userLogged.persona.apellido[0].toUpperCase()}
 						</DropdownToggle>
 					) : (
 						<DropdownToggle tag='span'>SU</DropdownToggle>

@@ -1,4 +1,4 @@
-import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { textFilter } from 'react-bootstrap-table2-filter';
 import { withRouter } from 'react-router-dom';

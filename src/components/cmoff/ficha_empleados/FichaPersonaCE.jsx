@@ -51,13 +51,11 @@ const FichaPersonaCE = props => {
 		tipoDoc: '',
 		codigoEmpleado: '',
 		nombres: '',
-		apellido1: '',
-		apellido2: '',
-		nombreCompuesto: '',
+		apellido: '',
 		email: '',
-		estado: '',
-		empresa: '',
-		funcionPrincipal: ''
+		direccion: '',
+		celular: ''
+	
 	};
 	const [empleado, setEmpleado] = useState(empleadoInitialState);
 	const [empleados, setEmpleados] = useState({});
@@ -104,14 +102,13 @@ const FichaPersonaCE = props => {
 				}
 				if (
 					element.hasOwnProperty('nombres') &&
-					element.hasOwnProperty('apellido1')
+					element.hasOwnProperty('apellido')
 				) {
 					element.label =
 						element['nombres'] +
 						' ' +
-						element['apellido1'] +
-						' ' +
-						(element['apellido2'] ? element['apellido2'] : '');
+						element['apellido'] 
+						
 				}
 			} else if (type === 'roles') {
 				if (element.hasOwnProperty(value)) {
@@ -331,10 +328,10 @@ const FichaPersonaCE = props => {
 									<div className='col-7'>
 										<FormGroup>
 											<AvField
-												name='apellido1'
+												name='apellido'
 												type='text'
-												value={empleado.apellido1}
-												model={empleado.apellido1}
+												value={empleado.apellido}
+												model={empleado.apellido}
 												onChange={handleInputChange}
 											/>
 										</FormGroup>
@@ -344,36 +341,21 @@ const FichaPersonaCE = props => {
 									<label
 										htmlFor='example-text-input'
 										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.PAIS}
+										{FICHAPERSONAL_LABELS.DIRECCION}
 									</label>
 									<div className='col-7'>
 										<FormGroup>
 											<AvField
-												name='pais'
+												name='direccion'
 												type='text'
-												value={empleado.pais}
-												model={empleado.pais}
+												value={empleado.direccion}
+												model={empleado.direccion}
 												onChange={handleInputChange}
 											/>
 										</FormGroup>
 									</div>
 								</FormGroup>
-								<FormGroup className='row'>
-									<label
-										htmlFor='example-text-input'
-										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.PROVINCIA}
-									</label>
-									<div className='col-7'>
-										<AvField
-											name='provincia'
-											type='text'
-											value={empleado.provincia}
-											model={empleado.provincia}
-											onChange={handleInputChange}
-										/>
-									</div>
-								</FormGroup>
+						
 							</fieldset>
 						</div>
 						<div className='border-right col-12 col-sm-12 col-md-12 col-lg-4'>
@@ -426,27 +408,10 @@ const FichaPersonaCE = props => {
 									</label>
 									<div className='col-7'>
 										<AvField
-											name='empresa'
+											name='celular'
 											type='text'
-											value={empleado.empresa}
-											model={empleado.empresa}
-											onChange={handleInputChange}
-										/>
-									</div>
-								</FormGroup>
-								<FormGroup className='row'>
-									<label
-										htmlFor='example-text-input'
-										className='col-5 col-form-label'>
-										{FICHAPERSONAL_LABELS.FUNCION_PRINCIPAL}
-									</label>
-									<div className='col-7'>
-										<AvField
-											name='funcionPrincipal'
-											model={empleado.funcionPrincipal}
-											className='form-control'
-											type='text'
-											value={empleado.funcionPrincipal}
+											value={empleado.celular}
+											model={empleado.celular}
 											onChange={handleInputChange}
 										/>
 									</div>

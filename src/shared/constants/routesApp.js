@@ -34,15 +34,10 @@ CMOFF_FICHA_EMPLEADOS + '/:id/ficha-personal';
 export const ITI_FORMATIVOS_IMPORTACION = CMOFF + '/importacion';
 export const CMOFF_REGISTROCORTES= CMOFF  + '/registrocortes';
 export const CMOFF_REGISTROCORTESCE_NEW = CMOFF+ '/crear';
-export const CMOFF_REGISTROPAGO = CMOFF + '/registropago';
+// export const CMOFF_REGISTROPAGO = CMOFF + '/registropago';
 
 
 
-
-// export const ITI_FORMATIVOS_IMPORTACION = CMOFF+ '/registrocortes';
-// export const ITI_FORMATIVOS_IMPORTACION_NEW = CMOFF + '/crear';
-// export const ITI_FORMATIVOS_IMPORTACION_DETAIL = CMOFF + '/:id/editar';
-// export const ITI_FORMATIVOS_IMPORTACION_EDIT = CMOFF + '/:id/editar';
 
 
 
